@@ -8,7 +8,7 @@ const Order = db.define('order', {
     defaultValue: false
   },
   items: {
-    type: Sequelize.ARRAY
+    type: Sequelize.TEXT
   }
 })
 

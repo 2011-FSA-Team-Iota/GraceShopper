@@ -8,8 +8,8 @@ const Order = require('./order')
  *    BlogPost.belongsTo(User)
  */
 
-Product.belongsToMany(Order)
-User.hasMany(Order)
+Product.belongsToMany(User, {through: Order})
+User.belongsToMany(Product, {through: Order})
 Order.belongsTo(User)
 
 /**

@@ -11,10 +11,6 @@ const Product = db.define('product', {
     type: Sequelize.DECIMAL(10, 2),
     allowNull: false
   },
-  sizes: {
-    type: Sequelize.ARRAY,
-    allowNull: false
-  },
   description: {
     type: Sequelize.TEXT,
     allowNull: false
