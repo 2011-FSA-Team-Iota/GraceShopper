@@ -30,7 +30,6 @@ async function seed() {
   await allOrders[0].addProduct(allProducts[6])
 
   await singleUser.addOrder(allOrders[0])
-  await singleUser.addOrder(allOrders[1])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
