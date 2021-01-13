@@ -13,12 +13,17 @@ const Product = db.define('product', {
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false
+    defaultValue: 'No product descrition at this time.'
   },
   imgUrl: {
     type: Sequelize.TEXT,
     allowNull: true,
-    defaultValue: ''
+    defaultValue:
+      'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
+  },
+  inventory: {
+    type: Sequelize.INTEGER,
+    defaultValue: 10
   }
 })
 

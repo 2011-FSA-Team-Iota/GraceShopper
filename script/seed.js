@@ -1,8 +1,9 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product} = require('../server/db/models')
-const products = require('../seed-data.js')
+const {User, Product, Order} = require('../server/db/models')
+const dummyProducts = require('../seed-data.js')
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -11,13 +12,24 @@ async function seed() {
     User.create({email: 'cody@email.com', username: 'tester', password: '123'})
   ])
 
-  await Promise.all(products.map(product => Product.create(product)))
+  await Promise.all(dummyProducts.map(product => Product.create(product)))
 
-  const user = await User.findAll()
+  const allProducts = await Product.findAll()
+  const singleUser = await User.findOne({where: {username: 'tester'}})
 
-  const product = await Product.findAll()
+  await Promise.all(allProducts.map(product => Order.create(product)))
 
-  await user[0].addProduct(product[0])
+  const allOrders = await Order.findAll()
+
+  // console.log(allOrders[0].__proto__)
+  await allOrders[0].addProduct(allProducts[1])
+  await allOrders[1].addProduct(allProducts[1])
+  await allOrders[6].addProduct(allProducts[1])
+  await allOrders[0].addProduct(allProducts[3])
+  await allOrders[0].addProduct(allProducts[5])
+  await allOrders[0].addProduct(allProducts[6])
+
+  await singleUser.addOrder(allOrders[0])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
