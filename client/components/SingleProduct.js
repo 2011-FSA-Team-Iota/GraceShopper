@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import DeleteProductBtn from './DeleteProductBtn'
-
+import UpdateForm from './UpdateForm'
 class SingleProduct extends Component {
   componentDidMount() {
     try {
@@ -28,6 +28,10 @@ class SingleProduct extends Component {
               <DeleteProductBtn
                 productId={this.props.match.params.id}
                 history={this.props.history}
+              />
+              <UpdateForm
+                product={product}
+                productId={this.props.match.params.id}
               />
             </div>
           </div>

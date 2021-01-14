@@ -5,7 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import productsReducer, {removeProduct} from './products'
 
-import singleProductReducer from './singleProduct'
+import singleProductReducer, {editProduct} from './singleProduct'
 
 const reducer = combineReducers({
   user,
@@ -20,4 +20,4 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 export default store
 export * from './user'
-export {removeProduct}
+export {removeProduct, editProduct}
