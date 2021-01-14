@@ -8,10 +8,10 @@ class AddProduct extends React.Component {
     super(props)
     this.state = {
       name: '',
-      price: 0,
+      price: '',
       description: '',
       imgUrl: '',
-      inventory: 0
+      inventory: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)

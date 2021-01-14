@@ -29,7 +29,7 @@ export function fetchProducts() {
 }
 
 export const addProductThunk = product => {
-  return async (dispatch, getState, {axios}) => {
+  return async dispatch => {
     try {
       const {data} = await axios.post('/api/products', product)
       dispatch(addProduct(data))
