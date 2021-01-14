@@ -12,7 +12,7 @@ export class AllProducts extends React.Component {
     return (
       <div>
         <h2>Our Products</h2>
-        {this.props.products.map(eachProduct => {
+        {this.props.products.sort((a, b) => b.id - a.id).map(eachProduct => {
           return (
             <span key={eachProduct.id}>
               <Link to={`/products/${eachProduct.id}`}>
