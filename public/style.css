@@ -19,3 +19,11 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.jumbo1 {
+  background-image: url('https://www.apple.com/v/home/s/images/heroes/iphone-12/iphone_12_us__fo0stbby242m_large.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
