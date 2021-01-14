@@ -3,8 +3,7 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import productsReducer from './products'
-
+import productsReducer, {removeProduct} from './products'
 
 import singleProductReducer from './singleProduct'
 
@@ -21,3 +20,4 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 export default store
 export * from './user'
+export {removeProduct}
