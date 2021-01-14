@@ -4,7 +4,6 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
 const DELETE_PRODUCTS = 'DELETE_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 
-
 // ACTION CREATORS
 function getProducts(products) {
   return {
@@ -43,6 +42,11 @@ export function removeProduct(productId, history) {
       await axios.delete(`/api/products/${productId}`)
       dispatch(deleteProduct(productId))
       history.push('/products')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 export const addProductThunk = product => {
   return async dispatch => {
