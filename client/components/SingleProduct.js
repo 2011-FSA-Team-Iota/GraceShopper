@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
+import DeleteProductBtn from './DeleteProductBtn'
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class SingleProduct extends Component {
   }
   render() {
     let {product} = this.props
-    console.log(product)
+
     if (product) {
       return (
         <div>
@@ -23,7 +24,11 @@ class SingleProduct extends Component {
             <div>
               <p>{product.price}</p>
               <p>{product.description}</p>
-              <img src={product.imageUrl} alt={product.id} />
+              <img src={product.imgUrl} alt={product.id} />
+              <DeleteProductBtn
+                productId={this.props.match.params.id}
+                history={this.props.history}
+              />
             </div>
           </div>
         </div>

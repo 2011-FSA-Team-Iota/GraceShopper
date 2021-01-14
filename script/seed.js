@@ -9,13 +9,13 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', username: 'tester', password: '123'})
+    User.create({email: 'cody@email.com', password: '123'})
   ])
 
   await Promise.all(dummyProducts.map(product => Product.create(product)))
 
   const allProducts = await Product.findAll()
-  const singleUser = await User.findOne({where: {username: 'tester'}})
+  const singleUser = await User.findOne({where: {email: 'cody@email.com'}})
 
   await Promise.all(allProducts.map(product => Order.create(product)))
 

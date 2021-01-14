@@ -21,11 +21,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    let product = await Product.findByPk(req.params.id);
-    if (!product) res.sendStatus(404);
+    let product = await Product.findByPk(req.params.id)
+    if (!product) res.sendStatus(404)
     else {
-      product = await product.update(req.body);
-      res.json(product);
+      product = await product.update(req.body)
+      res.json(product)
     }
   } catch (err) {
     next(err)
@@ -34,11 +34,12 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.id);
-    if (!product) res.sendStatus(404);
+    const product = await Product.findByPk(req.params.id)
+
+    if (!product) res.sendStatus(404)
     else {
-      await product.destroy();
-      res.status(204);
+      await product.destroy()
+      res.sendStatus(204)
     }
   } catch (err) {
     next(err)
@@ -47,8 +48,8 @@ router.delete('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const createProduct = await Product.create(req.body);
-    res.json(createProduct);
+    const createProduct = await Product.create(req.body)
+    res.json(createProduct)
   } catch (err) {
     next(err)
   }

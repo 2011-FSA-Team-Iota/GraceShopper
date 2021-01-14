@@ -1,13 +1,22 @@
 import axios from 'axios'
 // ACTION TYPES
 const GET_PRODUCTS = 'GET_PRODUCTS'
+const DELETE_PRODUCTS = 'DELETE_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
+
 
 // ACTION CREATORS
 function getProducts(products) {
   return {
     type: GET_PRODUCTS,
     products
+  }
+}
+
+function deleteProduct(productId) {
+  return {
+    type: DELETE_PRODUCTS,
+    productId
   }
 }
 
@@ -28,6 +37,13 @@ export function fetchProducts() {
   }
 }
 
+export function removeProduct(productId, history) {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/products/${productId}`)
+      dispatch(deleteProduct(productId))
+      history.push('/products')
+
 export const addProductThunk = product => {
   return async dispatch => {
     try {
@@ -39,13 +55,14 @@ export const addProductThunk = product => {
   }
 }
 
-// SUB-REDUCER
 const initialState = []
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS:
       return action.products
+    case DELETE_PRODUCTS:
+      return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
       return [...state, action.product]
     default:
