@@ -8,22 +8,19 @@ const Product = db.define('product', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.BIGINT,
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT,
-    defaultValue: 'No product descrition at this time.'
+    type: Sequelize.TEXT
   },
   imgUrl: {
     type: Sequelize.TEXT,
-    allowNull: true,
     defaultValue:
       'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
   },
   inventory: {
-    type: Sequelize.INTEGER,
-    defaultValue: 10
+    type: Sequelize.INTEGER
   }
 })
 

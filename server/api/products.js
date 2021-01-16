@@ -21,6 +21,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    console.log(req.body)
     let product = await Product.findByPk(req.params.id)
     if (!product) res.sendStatus(404)
     else {
@@ -48,7 +49,9 @@ router.delete('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body)
     const createProduct = await Product.create(req.body)
+    console.log(createProduct)
     res.json(createProduct)
   } catch (err) {
     next(err)

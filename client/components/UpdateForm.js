@@ -20,20 +20,24 @@ class UpdateForm extends Component {
     evt.preventDefault()
     const {name, price, description} = this.state
     const {product} = this.props
-    if (name !== '' || price !== '' || description !== '') {
-      if (name === '') await this.setState({name: product.name})
-      price === ''
-        ? await this.setState({price: Number(product.price)})
-        : await this.setState({price: Number(this.state.price)})
-      if (description === '')
-        await this.setState({description: product.description})
-      this.props.editProduct(this.props.productId, this.state)
-      console.log(this.state)
-      this.setState({
-        name: '',
-        price: '',
-        description: ''
-      })
+    try {
+      if (name !== '' || price !== '' || description !== '') {
+        if (name === '') await this.setState({name: product.name})
+        price === ''
+          ? await this.setState({price: Number(product.price)})
+          : await this.setState({price: Number(this.state.price) * 100})
+        if (description === '')
+          await this.setState({description: product.description})
+        console.log(this.state)
+        this.props.editProduct(this.props.productId, this.state)
+        this.setState({
+          name: '',
+          price: '',
+          description: ''
+        })
+      }
+    } catch (err) {
+      console.error(err.message)
     }
   }
 
@@ -52,6 +56,7 @@ class UpdateForm extends Component {
 
         <label htmlFor="price">Price</label>
         <input
+          type="number"
           name="price"
           onChange={this.handleChange}
           value={price}
