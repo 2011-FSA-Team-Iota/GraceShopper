@@ -18,10 +18,24 @@ class AddProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
+
+    const {price, inventory, imgUrl, description} = this.state
     try {
-      this.props.addProduct(this.state)
+      await this.setState({price: Number(price) * 100})
+      inventory.length
+        ? await this.setState({inventory: Number(inventory)})
+        : await this.setState({inventory: 10})
+      if (imgUrl.length === 0) {
+        await this.setState({imgUrl: ''})
+      }
+      if (description.length === 0) {
+        await this.setState({
+          description: 'No product descrition at this time.'
+        })
+      }
+      await this.props.addProduct(this.state)
       this.props.history.push('/products')
     } catch (error) {
       console.error(error)
@@ -29,6 +43,7 @@ class AddProduct extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault()
     this.setState({
       [event.target.name]: event.target.value
     })

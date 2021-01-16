@@ -18,7 +18,7 @@ export class AllProducts extends React.Component {
               <Link to={`/products/${eachProduct.id}`}>
                 <h3>{eachProduct.name}</h3>
               </Link>
-              <span>{eachProduct.price}</span>
+              <span>{eachProduct.price / 100}</span>
               <Link to={`/products/${eachProduct.id}`}>
                 <img src={eachProduct.imgUrl} style={{height: '100px'}} />
               </Link>

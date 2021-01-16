@@ -15,16 +15,17 @@ const ProductForm = props => {
             name="name"
             placeholder="Product's Name"
             value={product.name}
+            required
           />
         </label>
         <label htmlFor="price">
           Price
           <br />
           <input
+            required
             onChange={handleChange}
-            type="text"
             name="price"
-            placeholder="9999"
+            placeholder="Number"
             value={product.price}
           />
         </label>
@@ -55,14 +56,17 @@ const ProductForm = props => {
           <br />
           <input
             onChange={handleChange}
-            type="text"
             name="inventory"
-            placeholder="9999"
+            placeholder="Number"
             value={product.inventory}
           />
         </label>
 
-        <button onSubmit={handleSubmit} type="submit" disabled={!product.name}>
+        <button
+          onSubmit={handleSubmit}
+          type="submit"
+          disabled={!product.name || !product.price}
+        >
           Submit
         </button>
       </form>

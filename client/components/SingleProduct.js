@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import DeleteProductBtn from './DeleteProductBtn'
 import UpdateForm from './UpdateForm'
+
 class SingleProduct extends Component {
   componentDidMount() {
     try {
@@ -14,15 +15,15 @@ class SingleProduct extends Component {
   render() {
     let {product} = this.props
 
-    if (product) {
-      return (
-        <div>
+    return (
+      <>
+        {Object.keys(product).length ? (
           <div>
             <div>
               <h1>{product.name}</h1>
             </div>
             <div>
-              <p>{product.price}</p>
+              <p>{product.price / 100}</p>
               <p>{product.description}</p>
               <img src={product.imgUrl} alt={product.id} />
               <DeleteProductBtn
@@ -35,9 +36,11 @@ class SingleProduct extends Component {
               />
             </div>
           </div>
-        </div>
-      )
-    }
+        ) : (
+          <h1>LOADING...</h1>
+        )}
+      </>
+    )
   }
 }
 const mapState = state => {
