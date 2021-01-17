@@ -20,9 +20,9 @@ store.nextDispatch = () => {
     })
   })
 }
-beforeEach(() => {
-  store.dispatch(resetStore())
-})
+// beforeEach(() => {
+//   store.dispatch(resetStore())
+// })
 
 waitForExpect.defaults.timeout = 10
 waitForExpect.defaults.interval = 5
