@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {addProductToCart} from './cart'
 
 /**
  * ACTION TYPES
@@ -34,6 +35,10 @@ export const auth = (email, password, method) => async dispatch => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
+    const currentCart = res.data.orders.find(
+      order => order.checkedOut === false
+    )
+    dispatch(addProductToCart(currentCart.products))
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
