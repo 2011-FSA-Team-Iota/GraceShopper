@@ -3,7 +3,6 @@ import axios from 'axios'
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const DELETE_PRODUCTS = 'DELETE_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
-const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 // ACTION CREATORS
 function getProducts(products) {
@@ -19,12 +18,7 @@ function deleteProduct(productId) {
     productId
   }
 }
-function updateProduct(product) {
-  return {
-    type: UPDATE_PRODUCT,
-    product
-  }
-}
+
 export const addProduct = product => ({
   type: ADD_PRODUCT,
   product
