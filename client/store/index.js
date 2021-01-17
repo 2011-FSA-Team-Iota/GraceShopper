@@ -11,14 +11,15 @@ import cartReducer, {
   clearCart,
   addToCart,
   removeFromCart,
-  checkoutCart
+  checkoutCart,
+  setCart
 } from './cart'
 
 const reducer = combineReducers({
   user,
   singleProductReducer,
   productsReducer,
-  cartReducer
+  cart: cartReducer
 })
 
 const middleware = composeWithDevTools(
@@ -37,5 +38,6 @@ export {
   clearCart,
   addToCart,
   removeFromCart,
-  checkoutCart
+  checkoutCart,
+  setCart
 }
