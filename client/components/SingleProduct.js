@@ -14,6 +14,7 @@ class SingleProduct extends Component {
   }
   render() {
     let {product} = this.props
+    let {isAdmin} = this.props.user
 
     return (
       <>
@@ -26,14 +27,18 @@ class SingleProduct extends Component {
               <p>{product.price / 100}</p>
               <p>{product.description}</p>
               <img src={product.imgUrl} alt={product.id} />
-              <DeleteProductBtn
-                productId={this.props.match.params.id}
-                history={this.props.history}
-              />
-              <UpdateForm
-                product={product}
-                productId={this.props.match.params.id}
-              />
+              {isAdmin && (
+                <div>
+                  <DeleteProductBtn
+                    productId={this.props.match.params.id}
+                    history={this.props.history}
+                  />
+                  <UpdateForm
+                    product={product}
+                    productId={this.props.match.params.id}
+                  />
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -45,7 +50,8 @@ class SingleProduct extends Component {
 }
 const mapState = state => {
   return {
-    product: state.singleProductReducer
+    product: state.singleProductReducer,
+    user: state.user
   }
 }
 

@@ -9,8 +9,11 @@ export class AllProducts extends React.Component {
   }
 
   render() {
+    const {isAdmin} = this.props.user
+
     return (
       <div>
+        {isAdmin && <Link to="/addproduct">Add Product</Link>}
         <h2>Our Products</h2>
         {this.props.products.sort((a, b) => b.id - a.id).map(eachProduct => {
           return (
@@ -35,7 +38,8 @@ export class AllProducts extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.productsReducer
+    products: state.productsReducer,
+    user: state.user
   }
 }
 
