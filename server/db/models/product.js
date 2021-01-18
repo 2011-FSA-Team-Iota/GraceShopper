@@ -12,7 +12,8 @@ const Product = db.define('product', {
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: 'No product descrition at this time.'
   },
   imgUrl: {
     type: Sequelize.TEXT,
@@ -20,7 +21,8 @@ const Product = db.define('product', {
       'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
   },
   inventory: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 10
   }
 })
 

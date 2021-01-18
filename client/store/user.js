@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {setCart} from './cart'
 
 /**
  * ACTION TYPES
@@ -39,6 +40,10 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
+    const currentCart = res.data.orders.find(
+      order => order.checkedOut === false
+    )
+    dispatch(setCart(currentCart.products))
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
