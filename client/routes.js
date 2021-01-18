@@ -9,7 +9,8 @@ import {
   SingleProduct,
   AllProducts,
   AddProduct,
-  Landing
+  Landing,
+  CartView
 } from './components'
 import {me} from './store'
 
@@ -17,8 +18,8 @@ import {me} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
   }
 
   render() {
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route path="/products" component={AllProducts} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/cart" component={CartView} />
         {/* <Route exact path="/:" component={NotFound} /> */}
         <Route exact path="/" component={Landing} />
 
