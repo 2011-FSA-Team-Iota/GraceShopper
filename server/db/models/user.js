@@ -71,6 +71,11 @@ const setSaltAndPassword = user => {
   }
 }
 
+User.afterCreate(async (user, options) => {
+  const cart = await user.createOrder()
+  await user.addOrder(cart)
+})
+
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 User.beforeBulkCreate(users => {
