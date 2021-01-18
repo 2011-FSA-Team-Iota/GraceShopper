@@ -58,6 +58,17 @@ export const checkoutCart = userId => {
   }
 }
 
+export const fetchCart = userId => {
+  return async dispatch => {
+    try {
+      const {data: cart} = await axios.get(`/api/cart/${userId}`)
+      dispatch(setCart(cart.products))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 export default (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
