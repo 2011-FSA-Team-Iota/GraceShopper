@@ -36,6 +36,7 @@ class SingleProduct extends Component {
     }
 
     this.props.addToCart(this.props.user.id, productAndQuantity)
+    window.location.replace('/cart')
   }
 
   render() {
