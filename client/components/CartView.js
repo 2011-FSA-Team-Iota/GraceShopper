@@ -17,12 +17,15 @@ class CartView extends React.Component {
   }
 
   render() {
+    let totalPrice = 0
+
     return (
       <div>
         <h2>Cart</h2>
         {this.props.cart.length ? (
           <>
             {this.props.cart.sort((a, b) => b.id - a.id).map(eachProduct => {
+              totalPrice += eachProduct.price / 100
               return (
                 <div key={eachProduct.id}>
                   <span>
@@ -38,13 +41,7 @@ class CartView extends React.Component {
               )
             })}
             <p>
-              Total:{' '}
-              <span>
-                $
-                {this.props.cart
-                  .reduce((acc, curr) => acc + curr.price / 100, 0)
-                  .toFixed(2)}
-              </span>{' '}
+              Total: <span>${totalPrice.toFixed(2)}</span>
             </p>
             <button type="submit" onClick={evt => this.handleSubmit(evt)}>
               Checkout
