@@ -7,7 +7,8 @@ import {setCartOnRefresh, setUserOnRefresh} from '../store'
 class CartView extends React.Component {
   handleSubmit = evt => {
     evt.preventDefault()
-    this.props.checkoutCart(this.props.user.id)
+    this.props.checkOut(this.props.user.id)
+    window.location.replace('/checkout/confirmation')
   }
 
   componentDidMount() {
