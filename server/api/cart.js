@@ -20,8 +20,18 @@ router.get('/:userid', async (req, res, next) => {
   }
 })
 
-// CHECKOUT
+// ADD TO CART
 router.put('/:userId', async (req, res, next) => {
+  try {
+    console.log('TESTERRRRRRR')
+    console.log(req.params.userId)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// CHECKOUT
+router.put('/checkout/:userId', async (req, res, next) => {
   try {
     const pendingCart = await Order.findOne({
       where: {
