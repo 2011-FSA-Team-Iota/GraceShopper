@@ -21,18 +21,18 @@ router.get('/:userid', async (req, res, next) => {
 })
 
 // CHECKOUT
-router.put('/:userid', async (req, res, next) => {
+router.put('/:userId', async (req, res, next) => {
   try {
     const pendingCart = await Order.findOne({
       where: {
         checkedOut: false,
-        userId: Number(req.params.userid)
+        userId: Number(req.params.userId)
       }
     })
     const response = await pendingCart.update(req.body)
     res.json(response)
-  } catch (error) {
-    next(error)
+  } catch (err) {
+    next(err)
   }
 })
 

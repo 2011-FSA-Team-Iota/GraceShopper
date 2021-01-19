@@ -9,7 +9,7 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'})
+    User.create({email: 'cody@email.com', password: '123', isAdmin: true})
   ])
 
   await Promise.all(dummyProducts.map(product => Product.create(product)))
@@ -21,7 +21,6 @@ async function seed() {
 
   const allOrders = await Order.findAll()
 
-  // console.log(allOrders[0].__proto__)
   await allOrders[0].addProduct(allProducts[1])
   await allOrders[1].addProduct(allProducts[1])
   await allOrders[6].addProduct(allProducts[1])

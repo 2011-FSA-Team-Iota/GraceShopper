@@ -2,17 +2,18 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {checkoutCart, fetchCart} from '../store'
 import {Link} from 'react-router-dom'
+import {setCartOnRefresh, setUserOnRefresh} from '../store'
 
 class CartView extends React.Component {
-  // componentDidMount() {
-  //   const {fetchCart} = this.props
-  //   const {id} = this.props.user
-  //   fetchCart(id)
-  // }
-
   handleSubmit = evt => {
     evt.preventDefault()
     this.props.checkoutCart(this.props.user.id)
+  }
+
+  componentDidMount() {
+    if (this.props.user.id) {
+      this.props.fetchCart(this.props.user.id)
+    }
   }
 
   render() {
