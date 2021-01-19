@@ -1,4 +1,5 @@
 import axios from 'axios'
+import products from './products'
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -29,9 +30,9 @@ export const setCart = cart => ({type: SET_CART, cart})
 export const addToCart = (userId, productAndQuantity) => {
   return async dispatch => {
     try {
-      console.log('USERID=======>', userId)
-      const test = await axios.put(`api/cart/${userId}`, productAndQuantity)
-      dispatch(addProductToCart(test.data))
+      const res = await axios.put(`/api/cart/${userId}`, productAndQuantity)
+      console.log(res)
+      // dispatch(addProductToCart(test.data))
     } catch (err) {
       console.error(err.message)
     }

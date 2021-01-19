@@ -31,11 +31,12 @@ class SingleProduct extends Component {
     evt.preventDefault()
 
     const productAndQuantity = {
-      quanity: this.state.quantity,
+      quantity: this.state.quantity,
       product: this.props.product
     }
 
     this.props.addToCart(this.props.user.id, productAndQuantity)
+    this.setState({quantity: ''})
   }
 
   render() {

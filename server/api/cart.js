@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Product} = require('../db/models')
+const {User, Order, Product, OrderProducts} = require('../db/models')
 
 router.get('/:userid', async (req, res, next) => {
   try {
@@ -23,8 +23,29 @@ router.get('/:userid', async (req, res, next) => {
 // ADD TO CART
 router.put('/:userId', async (req, res, next) => {
   try {
-    console.log('TESTERRRRRRR')
-    console.log(req.params.userId)
+    const cart = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        checkedOut: false
+      }
+    })
+
+    // console.log('THIS IS THE CART --->', cart.__proto__)
+
+    if (await cart.hasProduct(req.body.product.id)) {
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: req.params.userId,
+          productId: req.body.product.id
+        }
+      })
+
+      productQuantity.update({
+        quantity: productQuantity.quantity + req.body.quantity
+      })
+
+      console.log()
+    }
   } catch (err) {
     next(err)
   }
