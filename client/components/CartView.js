@@ -2,7 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {checkoutCart, fetchCart} from '../store'
 import {Link} from 'react-router-dom'
-import {setCartOnRefresh, setUserOnRefresh} from '../store'
+import DeleteCart from './DeleteCart'
+import QuantityInput from './QuantityInput'
 
 class CartView extends React.Component {
   handleSubmit = evt => {
@@ -18,7 +19,7 @@ class CartView extends React.Component {
 
   render() {
     let totalPrice = 0
-
+    console.log('cart--->', this.props.cart)
     return (
       <div>
         <h2>Cart</h2>
@@ -26,6 +27,7 @@ class CartView extends React.Component {
           <>
             {this.props.cart.sort((a, b) => b.id - a.id).map(eachProduct => {
               totalPrice += eachProduct.price / 100
+              console.log(eachProduct.orderProducts.quantity)
               return (
                 <div key={eachProduct.id}>
                   <span>
@@ -37,6 +39,14 @@ class CartView extends React.Component {
                       <img src={eachProduct.imgUrl} style={{height: '50px'}} />
                     </Link>
                   </span>
+                  <div>
+                    <DeleteCart product={eachProduct} />
+                    <QuantityInput
+                      product={eachProduct}
+                      inventory={eachProduct.inventory}
+                      quantity={eachProduct.orderProducts.quantity}
+                    />
+                  </div>
                 </div>
               )
             })}
