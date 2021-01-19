@@ -22,7 +22,7 @@ class QuantityInput extends Component {
         <label htmlFor="quantity">Quantity:</label>
         <input
           type="number"
-          min={0}
+          min={1}
           max={this.props.inventory}
           name="quantity"
           onChange={this.onChange}
