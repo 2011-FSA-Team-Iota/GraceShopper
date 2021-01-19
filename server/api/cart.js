@@ -13,14 +13,35 @@ router.get('/:userid', async (req, res, next) => {
         model: Product
       }
     })
-
     !cart ? res.sendStatus(404) : res.json(cart)
   } catch (error) {
     next(error)
   }
 })
 
-// ADD TO CART
+
+
+
+
+
+// Update Quantity
+router.put('/:productId', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const productQuantity = await OrderProducts.findOne({
+      where: {
+        orderId: cart.id,
+        productId: Number(req.params.productId)
+      }
+    })
+    productQuantity.update({
+      quantity: req.body.quantity
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+
+// Add to Cart
 router.put('/', async (req, res, next) => {
   try {
     const userId = req.user.id
@@ -31,7 +52,7 @@ router.put('/', async (req, res, next) => {
         checkedOut: false
       }
     })
-
+    
     const boolean = await cart.hasProduct(req.body.product.id)
 
     if (boolean === true) {
@@ -67,9 +88,10 @@ router.put('/', async (req, res, next) => {
     }
   } catch (err) {
     next(err)
+
   }
 })
-
+    
 // CHECKOUT
 router.put('/checkout/:userId', async (req, res, next) => {
   try {
@@ -85,5 +107,21 @@ router.put('/checkout/:userId', async (req, res, next) => {
     next(err)
   }
 })
+// Delete From Cart
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const cart = await Order.findOne({
+      where: {
+        userId: userId,
+        checkedOut: false
+      }
+    })
+    await cart.removeProduct(Number(req.params.productId))
 
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
 module.exports = router
