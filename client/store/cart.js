@@ -51,7 +51,7 @@ export const addToCart = (userId, productAndQuantity) => {
 export const checkoutCart = userId => {
   return async dispatch => {
     try {
-      await axios.put(`api/cart/${userId}`, {checkedOut: true})
+      await axios.put(`api/cart/checkout/${userId}`, {checkedOut: true})
       dispatch(clearCart())
     } catch (err) {
       console.error(err.message)
