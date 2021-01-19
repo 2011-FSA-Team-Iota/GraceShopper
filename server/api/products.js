@@ -4,6 +4,7 @@ const {Product} = require('../db/models')
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll()
+
     res.json(products)
   } catch (err) {
     next(err)
@@ -13,6 +14,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
+
     res.json(product)
   } catch (err) {
     next(err)
@@ -21,8 +23,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log(req.body)
     let product = await Product.findByPk(req.params.id)
+
     if (!product) res.sendStatus(404)
     else {
       product = await product.update(req.body)
@@ -49,9 +51,8 @@ router.delete('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const createProduct = await Product.create(req.body)
-    console.log(createProduct)
+
     res.json(createProduct)
   } catch (err) {
     next(err)
