@@ -21,21 +21,23 @@ router.get('/:userid', async (req, res, next) => {
 })
 
 // ADD TO CART
-router.put('/:userId', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   try {
+    const userId = req.user.id
+
     const cart = await Order.findOne({
       where: {
-        userId: req.params.userId,
+        userId: userId,
         checkedOut: false
       }
     })
 
-    // console.log('THIS IS THE CART --->', cart.__proto__)
+    const boolean = await cart.hasProduct(req.body.product.id)
 
-    if (await cart.hasProduct(req.body.product.id)) {
+    if (boolean === true) {
       const productQuantity = await OrderProducts.findOne({
         where: {
-          orderId: req.params.userId,
+          orderId: cart.id,
           productId: req.body.product.id
         }
       })
@@ -44,7 +46,24 @@ router.put('/:userId', async (req, res, next) => {
         quantity: productQuantity.quantity + req.body.quantity
       })
 
-      console.log()
+      res.sendStatus(204)
+    } else if (boolean === false) {
+      await cart.addProduct(req.body.product.id)
+
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: cart.id,
+          productId: req.body.product.id
+        }
+      })
+
+      await productQuantity.update({
+        quantity: req.body.quantity
+      })
+
+      res.sendStatus(204)
+    } else {
+      res.sendStatus(404)
     }
   } catch (err) {
     next(err)

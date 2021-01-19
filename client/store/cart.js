@@ -27,12 +27,11 @@ export const clearCart = () => ({type: CLEAR_CART})
 export const setCart = cart => ({type: SET_CART, cart})
 
 // Thunk
-export const addToCart = (userId, productAndQuantity) => {
+export const addToCart = productAndQuantity => {
   return async dispatch => {
     try {
-      const res = await axios.put(`/api/cart/${userId}`, productAndQuantity)
-      console.log(res)
-      // dispatch(addProductToCart(test.data))
+      await axios.put(`/api/cart/`, productAndQuantity)
+      dispatch(addProductToCart(productAndQuantity.product))
     } catch (err) {
       console.error(err.message)
     }

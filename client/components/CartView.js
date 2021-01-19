@@ -25,7 +25,8 @@ class CartView extends React.Component {
         {this.props.cart.length ? (
           <>
             {this.props.cart.sort((a, b) => b.id - a.id).map(eachProduct => {
-              totalPrice += eachProduct.price / 100
+              totalPrice +=
+                eachProduct.price * eachProduct.orderProducts.quantity / 100
               return (
                 <div key={eachProduct.id}>
                   <span>
