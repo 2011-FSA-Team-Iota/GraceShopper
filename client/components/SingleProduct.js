@@ -31,11 +31,12 @@ class SingleProduct extends Component {
     evt.preventDefault()
 
     const productAndQuantity = {
-      quanity: this.state.quantity,
+      quantity: this.state.quantity,
       product: this.props.product
     }
 
-    this.props.addToCart(this.props.user.id, productAndQuantity)
+    this.props.addToCart(productAndQuantity)
+    this.setState({quantity: ''})
   }
 
   render() {
@@ -96,8 +97,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addToCart: (userId, productAndQuantity) =>
-      dispatch(addToCart(userId, productAndQuantity))
+    addToCart: productAndQuantity => dispatch(addToCart(productAndQuantity))
   }
 }
 

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Product} = require('../db/models')
+const {User, Order, Product, OrderProducts} = require('../db/models')
 
 router.get('/:userid', async (req, res, next) => {
   try {
@@ -21,10 +21,50 @@ router.get('/:userid', async (req, res, next) => {
 })
 
 // ADD TO CART
-router.put('/:userId', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   try {
-    console.log('TESTERRRRRRR')
-    console.log(req.params.userId)
+    const userId = req.user.id
+
+    const cart = await Order.findOne({
+      where: {
+        userId: userId,
+        checkedOut: false
+      }
+    })
+
+    const boolean = await cart.hasProduct(req.body.product.id)
+
+    if (boolean === true) {
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: cart.id,
+          productId: req.body.product.id
+        }
+      })
+
+      productQuantity.update({
+        quantity: productQuantity.quantity + req.body.quantity
+      })
+
+      res.sendStatus(204)
+    } else if (boolean === false) {
+      await cart.addProduct(req.body.product.id)
+
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: cart.id,
+          productId: req.body.product.id
+        }
+      })
+
+      await productQuantity.update({
+        quantity: req.body.quantity
+      })
+
+      res.sendStatus(204)
+    } else {
+      res.sendStatus(404)
+    }
   } catch (err) {
     next(err)
   }
