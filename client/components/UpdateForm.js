@@ -25,10 +25,9 @@ class UpdateForm extends Component {
         if (name === '') await this.setState({name: product.name})
         price === ''
           ? await this.setState({price: Number(product.price)})
-          : await this.setState({price: Number(this.state.price) * 100})
+          : await this.setState({price: Number(price) * 100})
         if (description === '')
           await this.setState({description: product.description})
-        console.log(this.state)
         this.props.editProduct(this.props.productId, this.state)
         this.setState({
           name: '',
