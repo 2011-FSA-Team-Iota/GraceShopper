@@ -18,12 +18,11 @@ import {me} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  async componentDidMount() {
-    await this.props.loadInitialData()
+  componentDidMount() {
+    this.props.loadInitialData()
   }
 
   render() {
-    console.log('routes.js (props) ---> ', this.props)
     const {isLoggedIn, isAdmin} = this.props
     const isAdministrator = isLoggedIn && isAdmin
 

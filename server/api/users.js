@@ -30,6 +30,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+
+// router.get('/:userId', async (req, res, next) => {
+//   try {
+//     const userId = Number(req.params.userId)
+//     const user = await User.findByPk(userId)
+
+//     !user ? res.sendStatus(404) : res.send(user)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 // Prevented hackers from creating req.body.isAdmin by not passing iadAdmin into req.body
 // if You don't want anyone to add "isAdmin" previliage, just don't add
 
