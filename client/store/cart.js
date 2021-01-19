@@ -36,6 +36,7 @@ export const setCart = cart => ({type: SET_CART, cart})
 export const addToCart = productAndQuantity => {
   return async dispatch => {
     try {
+
       await axios.put(`/api/cart/`, productAndQuantity)
       dispatch(addProductToCart(productAndQuantity.product))
     } catch (err) {
@@ -66,10 +67,10 @@ export const removeFromCart = product => {
   }
 }
 
-export const checkoutCart = userId => {
+export const checkoutCart = () => {
   return async dispatch => {
     try {
-      await axios.put(`api/cart/checkout/${userId}`, {checkedOut: true})
+      await axios.put(`api/cart/checkout`)
       dispatch(clearCart())
     } catch (err) {
       console.error(err.message)

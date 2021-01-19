@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const adminsOnly = require('../utils/adminsOnly')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', adminsOnly, async (req, res, next) => {
   try {
     let product = await Product.findByPk(req.params.id)
 
@@ -35,7 +36,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
 
@@ -49,7 +50,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminsOnly, async (req, res, next) => {
   try {
     const createProduct = await Product.create(req.body)
 

@@ -37,6 +37,7 @@ class SingleProduct extends Component {
 
     this.props.addToCart(productAndQuantity)
     this.setState({quantity: ''})
+    window.location.replace('/cart')
   }
 
   render() {

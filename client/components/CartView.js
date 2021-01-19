@@ -8,13 +8,13 @@ import QuantityInput from './QuantityInput'
 class CartView extends React.Component {
   handleSubmit = evt => {
     evt.preventDefault()
-    this.props.checkOut(this.props.user.id)
+    this.props.checkOut()
     window.location.replace('/checkout/confirmation')
   }
 
   componentDidMount() {
     if (this.props.user.id) {
-      this.props.fetchCart(this.props.user.id)
+      this.props.fetchCart()
     }
   }
 
@@ -74,7 +74,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    checkOut: userId => dispatch(checkoutCart(userId)),
+    checkOut: () => dispatch(checkoutCart()),
     fetchCart: userId => dispatch(fetchCart(userId))
   }
 }
