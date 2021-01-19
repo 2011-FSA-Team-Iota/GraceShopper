@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Product, OrderProducts} = require('../db/models')
+const {User, Order, Product, OrderProducts} = require('../db/models')
 
 router.get('/:userid', async (req, res, next) => {
   try {
@@ -19,27 +19,15 @@ router.get('/:userid', async (req, res, next) => {
   }
 })
 
-// ADD TO CART
-// router.put('/userId', async (req, res, next) => {
-//   try {
-//     console.log('user--->',req.user)
-//     console.log('TESTERRRRRRR')
-//     // console.log(req.params.userId)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+
+
+
+
+
 // Update Quantity
 router.put('/:productId', async (req, res, next) => {
   try {
     const userId = req.user.id
-    const cart = await Order.findOne({
-      where: {
-        userId: userId,
-        checkedOut: false
-      }
-    })
-    console.log(cart)
     const productQuantity = await OrderProducts.findOne({
       where: {
         orderId: cart.id,
@@ -52,8 +40,58 @@ router.put('/:productId', async (req, res, next) => {
     res.sendStatus(204)
   } catch (error) {
     next(error)
+
+// Add to Cart
+router.put('/', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+
+    const cart = await Order.findOne({
+      where: {
+        userId: userId,
+        checkedOut: false
+      }
+    })
+    
+    const boolean = await cart.hasProduct(req.body.product.id)
+
+    if (boolean === true) {
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: cart.id,
+          productId: req.body.product.id
+        }
+      })
+
+      productQuantity.update({
+        quantity: productQuantity.quantity + req.body.quantity
+      })
+
+      res.sendStatus(204)
+    } else if (boolean === false) {
+      await cart.addProduct(req.body.product.id)
+
+      const productQuantity = await OrderProducts.findOne({
+        where: {
+          orderId: cart.id,
+          productId: req.body.product.id
+        }
+      })
+
+      await productQuantity.update({
+        quantity: req.body.quantity
+      })
+
+      res.sendStatus(204)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (err) {
+    next(err)
+
   }
 })
+    
 // CHECKOUT
 router.put('/checkout/:userId', async (req, res, next) => {
   try {

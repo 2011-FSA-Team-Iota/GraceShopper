@@ -30,7 +30,6 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-
 // router.get('/:userId', async (req, res, next) => {
 //   try {
 //     const userId = Number(req.params.userId)

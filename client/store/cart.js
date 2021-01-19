@@ -1,4 +1,5 @@
 import axios from 'axios'
+import products from './products'
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -32,12 +33,11 @@ export const clearCart = () => ({type: CLEAR_CART})
 export const setCart = cart => ({type: SET_CART, cart})
 
 // Thunk
-export const addToCart = (userId, productAndQuantity) => {
+export const addToCart = productAndQuantity => {
   return async dispatch => {
     try {
-      console.log('USERID=======>', userId)
-      const test = await axios.put(`api/cart/${userId}`, productAndQuantity)
-      dispatch(addProductToCart(test.data))
+      await axios.put(`/api/cart/`, productAndQuantity)
+      dispatch(addProductToCart(productAndQuantity.product))
     } catch (err) {
       console.error(err.message)
     }
@@ -69,7 +69,7 @@ export const removeFromCart = product => {
 export const checkoutCart = userId => {
   return async dispatch => {
     try {
-      await axios.put(`api/cart/${userId}`, {checkedOut: true})
+      await axios.put(`api/cart/checkout/${userId}`, {checkedOut: true})
       dispatch(clearCart())
     } catch (err) {
       console.error(err.message)
