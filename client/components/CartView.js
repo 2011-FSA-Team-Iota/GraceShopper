@@ -13,7 +13,7 @@ class CartView extends React.Component {
 
   componentDidMount() {
     if (this.props.user.id) {
-      this.props.fetchCart(this.props.user.id)
+      this.props.fetchCart()
     }
   }
 
