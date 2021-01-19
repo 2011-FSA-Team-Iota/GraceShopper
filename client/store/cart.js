@@ -29,7 +29,6 @@ export const setCart = cart => ({type: SET_CART, cart})
 export const addToCart = (userId, productAndQuantity) => {
   return async dispatch => {
     try {
-      console.log('USERID=======>', userId)
       const test = await axios.put(`api/cart/${userId}`, productAndQuantity)
       dispatch(addProductToCart(test.data))
     } catch (err) {

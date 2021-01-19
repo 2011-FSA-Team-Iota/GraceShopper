@@ -77,13 +77,13 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  app.use((req, res, next) => {
-    console.log('Who am I?')
-    console.log('user: ', req.user)
-    console.log('email: ', req.user && req.user.email)
-    console.log('admin: ', req.user && req.user.isAdmin)
-    next()
-  })
+  // app.use((req, res, next) => {
+  //   console.log('Who am I?')
+  //   console.log('user: ', req.user)
+  //   console.log('email: ', req.user && req.user.email)
+  //   console.log('admin: ', req.user && req.user.isAdmin)
+  //   next()
+  // })
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
