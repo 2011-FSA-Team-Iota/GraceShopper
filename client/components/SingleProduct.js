@@ -34,8 +34,11 @@ class SingleProduct extends Component {
       quantity: this.state.quantity,
       product: this.props.product
     }
+    this.props.product.orderProducts = {}
+    this.props.product.orderProducts.quantity = this.state.quantity
 
-    this.props.addToCart(this.props.user.id, productAndQuantity)
+    this.props.addToCart(productAndQuantity)
+    this.setState({quantity: ''})
   }
 
   render() {
@@ -96,8 +99,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addToCart: (userId, productAndQuantity) =>
-      dispatch(addToCart(userId, productAndQuantity))
+    addToCart: productAndQuantity => dispatch(addToCart(productAndQuantity))
   }
 }
 
