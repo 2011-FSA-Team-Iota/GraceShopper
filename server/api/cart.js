@@ -32,33 +32,33 @@ router.put('/', async (req, res, next) => {
       }
     })
 
-    const boolean = await cart.hasProduct(req.body.product.id)
+    const boolean = await cart.hasProduct(req.body.id)
 
     if (boolean === true) {
       const productQuantity = await OrderProducts.findOne({
         where: {
           orderId: cart.id,
-          productId: req.body.product.id
+          productId: req.body.id
         }
       })
 
       productQuantity.update({
-        quantity: productQuantity.quantity + req.body.quantity
+        quantity: productQuantity.quantity + req.body.orderProducts.quantity
       })
 
       res.sendStatus(204)
     } else if (boolean === false) {
-      await cart.addProduct(req.body.product.id)
+      await cart.addProduct(req.body.id)
 
       const productQuantity = await OrderProducts.findOne({
         where: {
           orderId: cart.id,
-          productId: req.body.product.id
+          productId: req.body.id
         }
       })
 
       await productQuantity.update({
-        quantity: req.body.quantity
+        quantity: req.body.orderProducts.quantity
       })
 
       res.sendStatus(204)

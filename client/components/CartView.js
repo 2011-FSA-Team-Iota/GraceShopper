@@ -40,8 +40,12 @@ class CartView extends React.Component {
                     </Link>
                   </span>
                   <div>
-                    <DeleteCart product={eachProduct} />
+                    <DeleteCart
+                      product={eachProduct}
+                      isLoggedIn={!!this.props.user.id}
+                    />
                     <QuantityInput
+                      isLoggedIn={!!this.props.user.id}
                       product={eachProduct}
                       inventory={eachProduct.inventory}
                       quantity={eachProduct.orderProducts.quantity}

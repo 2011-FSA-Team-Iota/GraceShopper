@@ -11,7 +11,7 @@ class DeleteCart extends Component {
     return (
       <form onSubmit={evt => evt.preventDefault()}>
         <button type="submit" onClick={this.onSubmit}>
-          DELETE
+          Remove
         </button>
       </form>
     )

@@ -24,10 +24,13 @@ const removeUser = () => ({type: REMOVE_USER})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
-    if (res.data.orders !== undefined)
-      dispatch(setCart(res.data.orders[0].products))
+    const {data} = await axios.get('/auth/me')
+    dispatch(getUser(data || defaultUser))
+    if (data === '' && !!localStorage.getItem('cart') === true) {
+      dispatch(setCart(localStorage.getItem('cart'), false))
+    }
+    if (data.orders !== undefined)
+      dispatch(setCart(data.orders[0].products, true))
   } catch (err) {
     console.error(err)
   }
