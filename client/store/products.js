@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 // ACTION TYPES
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const DELETE_PRODUCTS = 'DELETE_PRODUCTS'
