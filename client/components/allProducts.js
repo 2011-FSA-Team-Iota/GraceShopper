@@ -13,7 +13,11 @@ export class AllProducts extends React.Component {
 
     return (
       <div id="our-products">
-        {isAdmin && <Link to="/addproduct">Add Product</Link>}
+        {isAdmin && (
+          <Link to="/addproduct" id="add-product">
+            Add Product
+          </Link>
+        )}
         <h2>Our Products</h2>
         <div id="products-wrapper">
           {this.props.products.sort((a, b) => b.id - a.id).map(eachProduct => {

@@ -44,13 +44,13 @@ class UpdateForm extends Component {
     const {name, price, description} = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} id="edit-product-form">
         <label htmlFor="name">Name</label>
         <input
           name="name"
           onChange={this.handleChange}
           value={name}
-          placeholder="Product Name"
+          placeholder="Update Product Name"
         />
 
         <label htmlFor="price">Price</label>
@@ -59,7 +59,7 @@ class UpdateForm extends Component {
           name="price"
           onChange={this.handleChange}
           value={price}
-          placeholder="Product Price"
+          placeholder="Update Price"
         />
 
         <label htmlFor="description">Description</label>
@@ -67,10 +67,13 @@ class UpdateForm extends Component {
           name="description"
           onChange={this.handleChange}
           value={description}
-          placeholder="Product Description"
+          placeholder="Update Product Description"
+          id="update-description"
         />
 
-        <button type="submit">Update</button>
+        <button type="submit" id="update-product-button">
+          Update
+        </button>
       </form>
     )
   }

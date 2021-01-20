@@ -44,13 +44,14 @@ form div {
   z-index: 8;
 }
 
-#nav-bar > h1 {
+#nav-bar > a > h1 {
   float: left;
   color: white;
   position: fixed;
   margin-top: 0.8vh;
   margin-left: 2vw;
   font-size: 5vh;
+  letter-spacing: 5px;
 }
 
 #nav-bar > nav > div > a {
@@ -369,4 +370,87 @@ form div {
   margin-top: 46vh;
   color: rgba(125, 125, 125, 0.24);
   font-size: 50px;
+}
+
+/*******************************/
+/*********  ADMIN VIEW *********/
+/* add product | edit product  */
+#add-product {
+  background-color: dodgerblue;
+  color: white;
+  padding: 5px 18px;
+  border-radius: 12px;
+  position: fixed;
+  top: 70px;
+  left: 30px;
+  box-shadow: 2px 2px 3px gray;
+}
+
+#add-product:active {
+  box-shadow: none;
+  background-color: dodgerblue;
+}
+
+#add-product:hover {
+  background-color: rgb(66, 159, 252);
+}
+
+#edit-product-form {
+  position: fixed;
+  bottom: 50px;
+}
+
+#edit-product-form > label {
+  display: none;
+}
+
+#edit-product-form > input {
+  display: block;
+  margin: 5px 0px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid gray;
+}
+
+#update-description {
+  height: 50px;
+  width: 200px;
+}
+
+#update-product-button {
+  outline: none;
+  border: 2px solid green;
+  color: green;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin-top: 8px;
+}
+
+#update-product-button:hover {
+  box-shadow: 3px 3px 5px gray;
+}
+
+#update-product-button:active {
+  box-shadow: none;
+}
+
+#delete-product-permanently {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  outline: none;
+  border: 2px solid red;
+  color: red;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 8px;
+}
+
+#delete-product-permanently:hover {
+  box-shadow: 3px 3px 5px gray;
+}
+
+#delete-product-permanently:active {
+  box-shadow: none;
 }

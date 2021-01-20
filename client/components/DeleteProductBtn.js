@@ -11,8 +11,9 @@ class DeleteProductBtn extends Component {
         <button
           type="submit"
           onClick={() => this.props.deleteProduct(Number(productId), history)}
+          id="delete-product-permanently"
         >
-          DELETE
+          Delete Product from Store
         </button>
       </form>
     )
