@@ -67,6 +67,12 @@
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "7.4.0",
     "@babel/plugin-proposal-decorators": "7.4.0",

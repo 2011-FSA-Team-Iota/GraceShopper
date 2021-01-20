@@ -248,3 +248,18 @@ form div {
 .add-to-cart > button:active {
   background-color: dodgerblue;
 }
+
+.profile > h3 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10;
+  align-items: center;
+  font-size: 18;
+}
+.profile > h4 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5;
+  align-items: center;
+  font-size: 10;
+}
