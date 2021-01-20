@@ -153,11 +153,36 @@ form div {
 }
 
 .each-item {
-  flex-basis: 50%;
+  flex-basis: 40%;
   flex-grow: 1;
   text-align: center;
+  margin: 28px 28px;
+  box-shadow: 3px 3px 8px rgba(22, 22, 22, 0.116);
+  padding: 12px 0px;
 }
 
 .each-item:hover {
-  border: 2px rgba(190, 190, 190, 0.425);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.247);
+}
+
+#products-wrapper > span > a > h3 {
+  color: black;
+  font-family: verdana;
+  font-weight: normal;
+}
+
+#products-wrapper > span > p {
+  color: rgb(32, 32, 32);
+  font-size: 0.8em;
+}
+
+#products-wrapper > span > .inventory {
+  color: rgb(120, 119, 119);
+  font-size: 0.8em;
+}
+
+#products-wrapper > span > .inventory-red {
+  color: rgb(255, 0, 0);
+  font-size: 0.7em;
+  font-weight: bold;
 }

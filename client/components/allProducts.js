@@ -20,13 +20,19 @@ export class AllProducts extends React.Component {
             return (
               <span key={eachProduct.id} className="each-item">
                 <Link to={`/products/${eachProduct.id}`}>
-                  <h3>{eachProduct.name}</h3>
-                </Link>
-                <span>{`$${eachProduct.price / 100}`}</span>
-                <Link to={`/products/${eachProduct.id}`}>
                   <img src={eachProduct.imgUrl} style={{height: '100px'}} />
                 </Link>
-                <p>{`${eachProduct.inventory} left in stock.`}</p>
+                <Link to={`/products/${eachProduct.id}`}>
+                  <h3>{eachProduct.name}</h3>
+                </Link>
+                <p>{`$${eachProduct.price / 100}`}</p>
+                <p
+                  className={`${
+                    Number(eachProduct.inventory) < 8
+                      ? 'inventory-red'
+                      : 'inventory'
+                  }`}
+                >{`${eachProduct.inventory} left in stock.`}</p>
               </span>
             )
           })}
