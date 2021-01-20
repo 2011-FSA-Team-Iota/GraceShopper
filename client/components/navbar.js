@@ -6,7 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="nav-bar">
-    <Link to="/home">
+    <Link to="/">
       <h1>CESV-||</h1>
     </Link>
     <nav>
