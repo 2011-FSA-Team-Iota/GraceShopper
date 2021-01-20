@@ -364,3 +364,9 @@ form div {
   font-size: 11px;
   font-family: helvetica;
 }
+
+#empty-cart {
+  margin-top: 46vh;
+  color: rgba(125, 125, 125, 0.24);
+  font-size: 50px;
+}
