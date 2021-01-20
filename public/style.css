@@ -74,7 +74,7 @@ form div {
   margin: auto;
 }
 /*************************/
-/******** NAV BAR ********/
+/******** AUTH FORM ********/
 .form-wrapper {
   padding-top: 25vh;
   width: 50vw;
@@ -135,4 +135,29 @@ form div {
   border-radius: 8px;
   outline: none;
 }
-/*************************/
+/*******************************/
+/******** PRODUCTS VIEW ********/
+#our-products > h2 {
+  font-weight: lighter;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(128, 128, 128, 0.575);
+}
+
+#products-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  margin: auto;
+  width: 80%;
+}
+
+.each-item {
+  flex-basis: 50%;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.each-item:hover {
+  border: 2px rgba(190, 190, 190, 0.425);
+}
