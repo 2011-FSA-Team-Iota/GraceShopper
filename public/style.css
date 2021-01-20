@@ -271,17 +271,53 @@ form div {
   font-weight: lighter;
 }
 
+#list-container {
+  margin-top: 60px;
+}
+
 #cart-item-list > * {
-  padding-top: 68px;
+  /* padding-top: 18px; */
   z-index: -1;
 }
 
-#cart-item-list > div > span > a > h3 {
+#cart-item-list > div > div > span > a > h3 {
   color: black;
   font-weight: normal;
   font-family: helvetica;
 }
 
-#cart-item-list > div > span > a > .item-image {
+#cart-item-list > div > div > span > a > .item-image {
   width: 58px;
+}
+
+.each-cart-item {
+  padding-top: 20px;
+}
+
+.item-price {
+  color: grey;
+  padding: 8px 0px;
+  display: block;
+}
+
+#checkout-button {
+  outline: none;
+  padding: 8px 28px;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 12px;
+  border: 0.5px solid black;
+  font-weight: lighter;
+  position: fixed;
+  right: 25px;
+  top: 128px;
+  z-index: 1;
+}
+
+#checkout-button:hover {
+  background-color: rgb(66, 159, 252);
+}
+
+#checkout-button:active {
+  background-color: dodgerblue;
 }
