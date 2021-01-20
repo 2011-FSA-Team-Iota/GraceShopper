@@ -11,10 +11,10 @@ import {
   AddProduct,
   Landing,
   CartView,
-  OrderConfirm
+  OrderConfirm,
+  AllUsers
 } from './components'
 import {me} from './store'
-
 /**
  * COMPONENT
  */
@@ -36,6 +36,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={CartView} />
         <Route path="/checkout/confirmation" component={OrderConfirm} />
+        <Route path="/users" component={AllUsers} />
         {/* <Route exact path="/:" component={NotFound} /> */}
         <Route exact path="/" component={Landing} />
 

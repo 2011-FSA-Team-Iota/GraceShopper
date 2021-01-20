@@ -38,25 +38,31 @@ form div {
   top: 0;
   left: 0;
   width: 100%;
-  height: 9vh;
+  height: 7vh;
   background-color: rgba(58, 58, 58, 0.873);
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.504);
+  z-index: 8;
 }
 
 #nav-bar > h1 {
   float: left;
   color: white;
   position: fixed;
-  margin-top: 2vh;
+  margin-top: 0.8vh;
   margin-left: 2vw;
   font-size: 5vh;
 }
 
 #nav-bar > nav > div > a {
   color: lightgray;
-  margin-top: 3vh;
-  font-size: 3vh;
+  margin-top: 3.5vh;
+  font-size: 2vh;
   font-weight: lighter;
+}
+
+#nav-bar > nav > div > a:hover {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
 #nav-bar > nav {
@@ -69,3 +75,213 @@ form div {
   margin: auto;
 }
 /*************************/
+/******** AUTH FORM ********/
+.form-wrapper {
+  padding-top: 25vh;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.form-wrapper > h2 {
+  text-align: center;
+  color: rgb(180, 180, 180);
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.auth-form > div {
+  display: block;
+  text-align: center;
+}
+
+/* .auth-form > div > label{
+  font-size: 2vh;
+  text-align: right;
+} */
+
+.auth-form > div > input {
+  width: 80%;
+  height: 4vh;
+  font-size: 2vh;
+  border: 2px solid rgb(180, 180, 180);
+  border-radius: 8px;
+  padding-left: 12px;
+  color: rgb(58, 58, 58);
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+.auth-form > div > input::placeholder {
+  font-weight: lighter;
+  font-family: sans-serif;
+}
+
+.auth-button {
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  color: white;
+  background-color: rgba(180, 180, 180, 0.873);
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+.auth-button:active {
+  width: 127px;
+  height: 49px;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(125, 125, 125);
+  border-radius: 8px;
+  outline: none;
+}
+/*******************************/
+/******** PRODUCTS VIEW ********/
+#our-products > h2 {
+  font-weight: lighter;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(128, 128, 128, 0.575);
+}
+
+#products-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  margin: auto;
+  width: 80%;
+}
+
+.each-item {
+  flex-basis: 40%;
+  flex-grow: 1;
+  text-align: center;
+  margin: 28px 28px;
+  box-shadow: 3px 3px 8px rgba(22, 22, 22, 0.116);
+  padding: 12px 0px;
+}
+
+.each-item:hover {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.247);
+}
+
+#products-wrapper > span > a > h3 {
+  color: black;
+  font-family: verdana;
+  font-weight: normal;
+}
+
+#products-wrapper > span > p {
+  color: rgb(32, 32, 32);
+  font-size: 0.8em;
+}
+
+#products-wrapper > span > .inventory {
+  color: rgb(120, 119, 119);
+  font-size: 0.8em;
+}
+
+#products-wrapper > span > .inventory-red {
+  color: rgb(255, 0, 0);
+  font-size: 0.7em;
+  font-weight: bold;
+}
+/**********************************/
+/******** SINGLE ITEM VIEW ********/
+#single-item-page {
+  padding: 0% 5%;
+  padding-top: 2%;
+}
+
+#single-item-wrapper > h1 {
+  font-weight: normal;
+  display: inline;
+  font-size: 45px;
+}
+
+.single-item-price {
+  color: rgb(125, 125, 125);
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+#single-item-page > div.single-item-container > span > img {
+  width: 15vw;
+  float: right;
+  margin-top: 8px;
+}
+
+#single-item-page > div.single-item-container > span > img:hover {
+  width: 25vw;
+}
+
+.item-description {
+  float: left;
+  width: 45vw;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.add-to-cart {
+  float: right;
+}
+
+.add-to-cart > * {
+  margin: 25px 10px;
+}
+
+.add-to-cart > button {
+  border-radius: 12px;
+  border: 0.5px solid black;
+  background-color: dodgerblue;
+  color: white;
+  height: 25px;
+  font-weight: lighter;
+  font-size: 10px;
+  outline: none;
+}
+
+.add-to-cart > button:hover {
+  background-color: rgb(66, 159, 252);
+}
+
+.add-to-cart > button:active {
+  background-color: dodgerblue;
+}
+
+/*************************************/
+/********  SHOPPING CART VIEW ********/
+#cart-view-wrapper {
+  text-align: center;
+}
+
+#cart-view-total {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding-top: 43px;
+  width: 100%;
+  background-color: rgb(236, 236, 236);
+  border-bottom: 2px solid rgba(161, 161, 161, 0.466);
+}
+
+#cart-view-total > * {
+  font-weight: lighter;
+}
+
+#cart-item-list > * {
+  padding-top: 68px;
+  z-index: -1;
+}
+
+#cart-item-list > div > span > a > h3 {
+  color: black;
+  font-weight: normal;
+  font-family: helvetica;
+}
+
+#cart-item-list > div > span > a > .item-image {
+  width: 58px;
+}
