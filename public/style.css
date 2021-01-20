@@ -292,6 +292,16 @@ form div {
 
 .each-cart-item {
   padding-top: 20px;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.each-cart-item > span > a > h3 {
+  text-shadow: 2px 2px 3px rgba(128, 128, 128, 0.432);
+}
+
+.each-cart-item:hover {
+  box-shadow: 2px 2px 5px gray;
 }
 
 .item-price {
@@ -320,4 +330,37 @@ form div {
 
 #checkout-button:active {
   background-color: dodgerblue;
+}
+
+#list-container > div > form > button {
+  background-color: transparent;
+  outline: none;
+  padding: 2px 8px;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  border: none;
+  font-weight: lighter;
+  font-size: 10px;
+  margin: 10px 0;
+}
+
+#list-container > div > form > button:hover {
+  background-color: transparent;
+  border: 0.5px solid gray;
+}
+
+#list-container > div > form > button:active {
+  background-color: transparent;
+  border: 2px solid gray;
+}
+
+.quantity-container > label > input {
+  margin: 8px 0px;
+  width: 30px;
+  font-size: 10px;
+}
+
+.quantity-container > label {
+  font-size: 11px;
+  font-family: helvetica;
 }

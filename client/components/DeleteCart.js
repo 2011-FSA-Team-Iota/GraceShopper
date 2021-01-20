@@ -10,7 +10,11 @@ class DeleteCart extends Component {
   render() {
     return (
       <form onSubmit={evt => evt.preventDefault()}>
-        <button type="submit" onClick={this.onSubmit}>
+        <button
+          type="submit"
+          onClick={this.onSubmit}
+          className="cart-remove-item-button"
+        >
           Remove From Cart
         </button>
       </form>
