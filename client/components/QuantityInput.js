@@ -9,6 +9,7 @@ class QuantityInput extends Component {
       quantity: this.props.quantity
     }
   }
+
   onChange = async evt => {
     evt.preventDefault()
     await this.setState({
@@ -16,7 +17,9 @@ class QuantityInput extends Component {
     })
     this.props.setQuantity(this.props.product, this.state.quantity)
   }
+
   render() {
+    console.log(this.props.isLoggedIn)
     return (
       <div>
         <label htmlFor="quantity">Quantity:</label>
@@ -32,9 +35,11 @@ class QuantityInput extends Component {
     )
   }
 }
+
 const mapDispatch = dispatch => {
   return {
     setQuantity: (product, quantity) => dispatch(setQuantity(product, quantity))
   }
 }
+
 export default connect(null, mapDispatch)(QuantityInput)

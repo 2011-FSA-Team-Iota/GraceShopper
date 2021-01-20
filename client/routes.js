@@ -20,7 +20,7 @@ import {me} from './store'
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
+    this.props.loadInitialData(this.props.isLoggedIn)
   }
 
   render() {
@@ -76,8 +76,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
+    loadInitialData(isLoggedIn) {
+      dispatch(me(isLoggedIn))
     }
   }
 }

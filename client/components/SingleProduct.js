@@ -29,21 +29,18 @@ class SingleProduct extends Component {
 
   onSubmitHandler = evt => {
     evt.preventDefault()
+    const {product, addToCart, isLoggedIn} = this.props
 
-    const productAndQuantity = {
-      quantity: this.state.quantity,
-      product: this.props.product
-    }
-    this.props.product.orderProducts = {}
-    this.props.product.orderProducts.quantity = this.state.quantity
+    product.orderProducts = {}
+    product.orderProducts.quantity = this.state.quantity
 
-    this.props.addToCart(productAndQuantity)
+    addToCart(isLoggedIn, product)
     this.setState({quantity: ''})
   }
 
   render() {
-    let {product} = this.props
-    let {isAdmin} = this.props.user
+    const {product} = this.props
+    const {isAdmin} = this.props.user
 
     return (
       <>
@@ -94,14 +91,15 @@ class SingleProduct extends Component {
 const mapState = state => {
   return {
     product: state.singleProductReducer,
-    user: state.user
+    user: state.user,
+    isLoggedIn: !!state.user.id
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addToCart: productAndQuantity => dispatch(addToCart(productAndQuantity))
+    addToCart: (isLoggedIn, product) => dispatch(addToCart(isLoggedIn, product))
   }
 }
 

@@ -47,12 +47,16 @@ class CartView extends React.Component {
                     <div>
                       <span>${eachProduct.price / 100}</span>
                       <QuantityInput
-                        product={eachProduct}
-                        inventory={eachProduct.inventory}
-                        quantity={eachProduct.orderProducts.quantity}
-                      />
+                      isLoggedIn={!!this.props.user.id}
+                      product={eachProduct}
+                      inventory={eachProduct.inventory}
+                      quantity={eachProduct.orderProducts.quantity}
+                    />
                     </div>
-                    <DeleteCart product={eachProduct} />
+                    <DeleteCart
+                      product={eachProduct}
+                      isLoggedIn={!!this.props.user.id}
+                    />
                   </div>
                 )
               })}
