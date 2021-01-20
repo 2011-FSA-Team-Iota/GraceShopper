@@ -43,13 +43,6 @@ form div {
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.504);
 }
 
-#nav-bar > img {
-  width: 50px;
-  position: fixed;
-  margin-top: 2vh;
-  margin-left: 15vw;
-}
-
 #nav-bar > h1 {
   float: left;
   color: white;
