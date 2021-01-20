@@ -1,4 +1,5 @@
 import axios from 'axios'
+import localStorage from 'local-storage'
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -29,9 +30,38 @@ export const setCart = cart => ({type: SET_CART, cart})
 export const addToCart = (userId, productAndQuantity) => {
   return async dispatch => {
     try {
-      console.log('USERID=======>', userId)
       const test = await axios.put(`api/cart/${userId}`, productAndQuantity)
-      dispatch(addProductToCart(test.data))
+      // Decide if User or not a User?
+      if (!userId) {
+        // localCart has something in it? IF YES
+        if (JSON.parse(localStorage.get('localCart'))) {
+          // bring in localCart and parse it back to an array of Obj's
+          let currCart = JSON.parse(localStorage.get('localCart'))
+          // iterate through the localCart array of objects
+          if (
+            currCart.some(
+              //find if the item attempting to be added is already there
+              curr => curr.product.id === productAndQuantity.product.id
+            )
+          ) {
+            // if so add onto the quantity
+            // eslint-disable-next-line no-undef
+            curr.quantity += productAndQuantity.quantity
+          } else {
+            // if not push it onto the back of the cart AKA a new item
+            currCart.push(productAndQuantity)
+          }
+          console.log(currCart)
+
+          // turn the cart back into a string and send it back up to LocalStorage
+          localStorage.set('localCart', JSON.stringify(currCart))
+        } else {
+          // if cart @ LS has nothing in it then make an array and add the first item
+          localStorage.set('localCart', JSON.stringify([productAndQuantity]))
+        }
+
+        dispatch(addProductToCart(test.data))
+      }
     } catch (err) {
       console.error(err.message)
     }
