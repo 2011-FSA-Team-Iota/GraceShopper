@@ -189,7 +189,8 @@ form div {
 /**********************************/
 /******** SINGLE ITEM VIEW ********/
 #single-item-page {
-  padding: 2% 5%;
+  padding: 0% 5%;
+  padding-top: 2%;
 }
 
 #single-item-wrapper > h1 {
@@ -201,21 +202,22 @@ form div {
 .single-item-price {
   color: rgb(125, 125, 125);
   font-size: 23px;
+  margin-bottom: 8px;
 }
 
 #single-item-page > div.single-item-container > span > img {
-  width: 300px;
+  width: 35vw;
   float: right;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 #single-item-page > div.single-item-container > span > img:hover {
-  width: 380px;
+  width: 40vw;
 }
 
 .item-description {
   float: left;
-  width: 38%;
+  width: 45vw;
   font-size: 12px;
   font-weight: lighter;
 }
