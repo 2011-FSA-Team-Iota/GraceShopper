@@ -7,7 +7,6 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="nav-bar">
     <h1>CESV-11</h1>
-    <img src="/CESV-11.jpg" />
     <nav>
       {isLoggedIn ? (
         <div>
@@ -32,7 +31,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   </div>
 )
 
-/**
+/*
  * CONTAINER
  */
 const mapState = state => {
