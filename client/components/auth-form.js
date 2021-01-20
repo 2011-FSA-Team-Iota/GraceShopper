@@ -10,22 +10,19 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <div className="form-wrapper">
+      {/* <h2>{displayName.toUpperCase()}</h2> */}
+      <form onSubmit={handleSubmit} name={name} className="auth-form">
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          <input name="email" type="text" placeholder="Email / Username" />
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <input name="password" type="password" placeholder="Password" />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <button type="submit" className="auth-button">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>

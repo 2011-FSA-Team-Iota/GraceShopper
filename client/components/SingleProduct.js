@@ -48,14 +48,28 @@ class SingleProduct extends Component {
     return (
       <>
         {Object.keys(product).length ? (
-          <div>
-            <div>
+          <div id="single-item-page">
+            <div id="single-item-wrapper">
               <h1>{product.name}</h1>
+              <form className="add-to-cart" onSubmit={this.onSubmitHandler}>
+                <input
+                  type="number"
+                  name="quantity"
+                  min={0}
+                  max={this.props.product.inventory}
+                  value={this.state.quantity}
+                  placeholder="0"
+                  onChange={e => this.onChangeHandler(e)}
+                />
+                <button type="submit">Add to Cart</button>
+              </form>
             </div>
-            <div>
-              <p>${product.price / 100}</p>
-              <p>{product.description}</p>
-              <img src={product.imgUrl} alt={product.id} />
+            <div className="single-item-container">
+              <p className="single-item-price">${product.price / 100}</p>
+              <span>
+                <img src={product.imgUrl} alt={product.id} />
+              </span>
+              <p className="item-description">{product.description}</p>
               {isAdmin && (
                 <div>
                   <DeleteProductBtn
@@ -68,18 +82,6 @@ class SingleProduct extends Component {
                   />
                 </div>
               )}
-              <form onSubmit={this.onSubmitHandler}>
-                <input
-                  type="number"
-                  name="quantity"
-                  min={0}
-                  max={this.props.product.inventory}
-                  value={this.state.quantity}
-                  placeholder="0"
-                  onChange={e => this.onChangeHandler(e)}
-                />
-                <button type="submit">Add to Cart</button>
-              </form>
             </div>
           </div>
         ) : (
