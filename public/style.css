@@ -41,6 +41,7 @@ form div {
   height: 7vh;
   background-color: rgba(58, 58, 58, 0.873);
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.504);
+  z-index: 8;
 }
 
 #nav-bar > h1 {
@@ -206,13 +207,13 @@ form div {
 }
 
 #single-item-page > div.single-item-container > span > img {
-  width: 35vw;
+  width: 15vw;
   float: right;
   margin-top: 8px;
 }
 
 #single-item-page > div.single-item-container > span > img:hover {
-  width: 40vw;
+  width: 25vw;
 }
 
 .item-description {
@@ -247,4 +248,40 @@ form div {
 
 .add-to-cart > button:active {
   background-color: dodgerblue;
+}
+
+/*************************************/
+/********  SHOPPING CART VIEW ********/
+#cart-view-wrapper {
+  text-align: center;
+}
+
+#cart-view-total {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding-top: 43px;
+  width: 100%;
+  background-color: rgb(236, 236, 236);
+  border-bottom: 2px solid rgba(161, 161, 161, 0.466);
+}
+
+#cart-view-total > * {
+  font-weight: lighter;
+}
+
+#cart-item-list > * {
+  padding-top: 68px;
+  z-index: -1;
+}
+
+#cart-item-list > div > span > a > h3 {
+  color: black;
+  font-weight: normal;
+  font-family: helvetica;
+}
+
+#cart-item-list > div > span > a > .item-image {
+  width: 58px;
 }
