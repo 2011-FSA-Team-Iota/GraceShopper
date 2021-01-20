@@ -34,10 +34,11 @@ class SingleProduct extends Component {
       quantity: this.state.quantity,
       product: this.props.product
     }
+    this.props.product.orderProducts = {}
+    this.props.product.orderProducts.quantity = this.state.quantity
 
     this.props.addToCart(productAndQuantity)
     this.setState({quantity: ''})
-    window.location.replace('/cart')
   }
 
   render() {

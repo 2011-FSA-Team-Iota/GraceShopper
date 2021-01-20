@@ -1,5 +1,5 @@
 import axios from 'axios'
-import products from './products'
+import history from '../history'
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -36,9 +36,9 @@ export const setCart = cart => ({type: SET_CART, cart})
 export const addToCart = productAndQuantity => {
   return async dispatch => {
     try {
-
       await axios.put(`/api/cart/`, productAndQuantity)
       dispatch(addProductToCart(productAndQuantity.product))
+      history.push('/cart')
     } catch (err) {
       console.error(err.message)
     }
@@ -49,7 +49,6 @@ export const setQuantity = (product, quantity) => {
     try {
       await axios.put(`/api/cart/${product.id}`, quantity)
       product.orderProducts.quantity = quantity
-      console.log('product---->', product)
       dispatch(updateQuantity(product))
     } catch (err) {
       console.error(err.message)
@@ -70,18 +69,19 @@ export const removeFromCart = product => {
 export const checkoutCart = () => {
   return async dispatch => {
     try {
-      await axios.put(`api/cart/checkout`)
+      await axios.put(`/api/cart/checkout`)
       dispatch(clearCart())
+      history.push('/checkout/confirmation')
     } catch (err) {
       console.error(err.message)
     }
   }
 }
 
-export const fetchCart = userId => {
+export const fetchCart = () => {
   return async dispatch => {
     try {
-      const {data: cart} = await axios.get(`/api/cart/${userId}`)
+      const {data: cart} = await axios.get(`/api/cart/`)
       dispatch(setCart(cart.products))
     } catch (error) {
       console.error(error)

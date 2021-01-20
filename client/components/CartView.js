@@ -9,7 +9,6 @@ class CartView extends React.Component {
   handleSubmit = evt => {
     evt.preventDefault()
     this.props.checkOut()
-    window.location.replace('/checkout/confirmation')
   }
 
   componentDidMount() {
@@ -20,7 +19,7 @@ class CartView extends React.Component {
 
   render() {
     let totalPrice = 0
-    console.log('cart--->', this.props.cart)
+
     return (
       <div>
         <h2>Cart</h2>
@@ -75,7 +74,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     checkOut: () => dispatch(checkoutCart()),
-    fetchCart: userId => dispatch(fetchCart(userId))
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 
