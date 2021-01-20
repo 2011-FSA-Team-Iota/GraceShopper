@@ -244,3 +244,7 @@ form div {
 .add-to-cart > button:hover {
   background-color: rgb(66, 159, 252);
 }
+
+.add-to-cart > button:active {
+  background-color: dodgerblue;
+}
