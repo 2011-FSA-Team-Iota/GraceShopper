@@ -186,3 +186,59 @@ form div {
   font-size: 0.7em;
   font-weight: bold;
 }
+/**********************************/
+/******** SINGLE ITEM VIEW ********/
+#single-item-page {
+  padding: 2% 5%;
+}
+
+#single-item-wrapper > h1 {
+  font-weight: normal;
+  display: inline;
+  font-size: 45px;
+}
+
+.single-item-price {
+  color: rgb(125, 125, 125);
+  font-size: 23px;
+}
+
+#single-item-page > div.single-item-container > span > img {
+  width: 300px;
+  float: right;
+  margin-top: 20px;
+}
+
+#single-item-page > div.single-item-container > span > img:hover {
+  width: 380px;
+}
+
+.item-description {
+  float: left;
+  width: 38%;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.add-to-cart {
+  float: right;
+}
+
+.add-to-cart > * {
+  margin: 25px 10px;
+}
+
+.add-to-cart > button {
+  border-radius: 12px;
+  border: 0.5px solid black;
+  background-color: dodgerblue;
+  color: white;
+  height: 25px;
+  font-weight: lighter;
+  font-size: 10px;
+  outline: none;
+}
+
+.add-to-cart > button:hover {
+  background-color: rgb(66, 159, 252);
+}
