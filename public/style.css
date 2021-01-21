@@ -250,6 +250,65 @@ form div {
   background-color: dodgerblue;
 }
 
+/****************************/
+/******** ADMIN VIEW ********/
+.profile > h3 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10;
+  align-items: center;
+  font-size: 18;
+}
+.profile > h4 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5;
+  align-items: center;
+  font-size: 10;
+}
+
+/***********************************/
+/******** LANDING PAGE VIEW ********/
+
+.jumbo1 {
+  background-size: cover;
+  color: #ccc;
+  height: 600px;
+  position: relative;
+  z-index: -2;
+}
+.jumbo1 > div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10;
+  padding-bottom: 10;
+  align-items: center;
+}
+.overlay {
+  background-color: #000;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.overlay > h1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10;
+  margin-left: 10;
+  align-items: center;
+}
+.overlay > p {
+  margin-left: 10;
+  margin-right: 10;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10;
+  align-content: center;
+  align-items: center;
+
 /*************************************/
 /********  SHOPPING CART VIEW ********/
 #cart-view-wrapper {

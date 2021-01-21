@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../store/users'
-import {Link} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 export class AllUsers extends Component {
   componentDidMount() {
@@ -9,7 +10,6 @@ export class AllUsers extends Component {
   }
 
   render() {
-    //   const { isAdmin } = this.props.user
     const {users} = this.props
     console.log(users)
 
@@ -17,10 +17,23 @@ export class AllUsers extends Component {
       <div>
         {users.map(user => {
           return (
-            <span key={user.id}>
-              <h3>{user.id}</h3>
-              <h4>{user.email}</h4>
-            </span>
+            <div
+              key={user.id}
+              style={{
+                marginTop: 5,
+                marginLeft: 10,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                fontSize: 10
+              }}
+            >
+              <div>
+                <FontAwesomeIcon icon={faUser} color="#04AAFF" size="1x" />
+                user {user.id}
+              </div>
+              <div>{user.email}</div>
+            </div>
           )
         })}
       </div>
