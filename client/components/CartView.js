@@ -79,7 +79,7 @@ class CartView extends React.Component {
             ) : !this.props.cart.length ? (
               <h3 id="empty-cart">Shopping Cart is empty.</h3>
             ) : (
-              <h1>LOADING</h1>
+              <h1 id="loading">LOADING</h1>
             )}
           </div>
         </div>
