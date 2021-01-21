@@ -28,12 +28,10 @@ export class AllProducts extends React.Component {
                 className="each-item"
               >
                 <span key={eachProduct.id}>
-                  <Link to={`/products/${eachProduct.id}`}>
-                    <img src={eachProduct.imgUrl} style={{height: '100px'}} />
-                  </Link>
-                  <Link to={`/products/${eachProduct.id}`}>
-                    <h3>{eachProduct.name}</h3>
-                  </Link>
+                  <img src={eachProduct.imgUrl} style={{height: '100px'}} />
+
+                  <h3>{eachProduct.name}</h3>
+
                   <p>{`$${eachProduct.price / 100}`}</p>
                   <p
                     className={`${
