@@ -221,7 +221,7 @@ form div {
 }
 
 #single-item-page > div.single-item-container > span > img:hover {
-  width: 25vw;
+  width: 20vw;
 }
 
 .item-description {
@@ -410,7 +410,7 @@ form div {
 
 #edit-product-form {
   position: fixed;
-  bottom: 50px;
+  bottom: 80px;
 }
 
 #edit-product-form > label {
@@ -450,7 +450,7 @@ form div {
 
 #delete-product-permanently {
   position: fixed;
-  bottom: 30px;
+  bottom: 80px;
   right: 30px;
   outline: none;
   border: 2px solid red;
