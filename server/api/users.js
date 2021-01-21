@@ -16,7 +16,7 @@ router.param('id', (req, res, next, id) => {
     .catch(next)
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -59,7 +59,7 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', adminsOnly, (req, res, next) => {
   req.requestedUser
     .reload({
       // include: [{
