@@ -26,12 +26,15 @@ async function seed() {
 
   const allOrders = await Order.findAll()
 
-  await allOrders[0].addProduct(allProducts[1])
-  await allOrders[1].addProduct(allProducts[1])
-  await allOrders[6].addProduct(allProducts[1])
-  await allOrders[0].addProduct(allProducts[3])
-  await allOrders[0].addProduct(allProducts[5])
-  await allOrders[0].addProduct(allProducts[6])
+  function random() {
+    return Math.floor(Math.random() * 10) + 1
+  }
+
+  let count = 50
+  while (count > 0) {
+    await allOrders[random()].addProduct(allProducts[random()])
+    count--
+  }
 
   await singleUser.addOrder(allOrders[0])
 
