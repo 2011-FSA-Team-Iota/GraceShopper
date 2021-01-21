@@ -129,15 +129,20 @@ form div {
   text-align: center;
 }
 
-.auth-button:active {
-  width: 127px;
-  height: 49px;
-  font-size: 18px;
-  color: rgb(255, 255, 255);
+.auth-button:hover {
   background-color: rgb(125, 125, 125);
+}
+
+.auth-button:active {
+  width: 96px;
+  height: 28px;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(180, 180, 180, 0.873);
   border-radius: 8px;
   outline: none;
 }
+
 /*******************************/
 /******** PRODUCTS VIEW ********/
 #our-products > h2 {
