@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AllUsers from './AllUsers'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
+
 /**
  * COMPONENT
  */
@@ -11,16 +14,23 @@ export const UserHome = props => {
   return (
     <div>
       {isAdmin ? (
-        <div>
-          <h3>Welcome, Administrator</h3>
-          <h2>User Information</h2>
+        <div className="profile">
+          <h3>
+            <FontAwesomeIcon icon={faUser} color="black" size="2x" />
+            Welcome, Administrator
+          </h3>
+
+          <h4>Users</h4>
           <div>
             <AllUsers />
           </div>
         </div>
       ) : (
-        <div>
-          <h3>Welcome, {email}</h3>
+        <div className="profile">
+          <h3>
+            <FontAwesomeIcon icon={faUser} color="#04AAFF" size="2x" />
+            Welcome, {email}
+          </h3>
         </div>
       )}
     </div>

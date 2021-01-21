@@ -8,7 +8,7 @@ import QuantityInput from './QuantityInput'
 class CartView extends React.Component {
   handleSubmit = evt => {
     evt.preventDefault()
-    this.props.checkOut()
+    this.props.checkOut(this.props.user.isGuest, this.props.cart)
   }
 
   componentDidMount() {
@@ -62,7 +62,6 @@ class CartView extends React.Component {
                             ${eachProduct.price / 100}
                           </span>
                           <QuantityInput
-                            isLoggedIn={!!this.props.user.id}
                             product={eachProduct}
                             inventory={eachProduct.inventory}
                             quantity={eachProduct.orderProducts.quantity}
@@ -70,7 +69,6 @@ class CartView extends React.Component {
                         </div>
                         <DeleteCart
                           product={eachProduct}
-                          isLoggedIn={!!this.props.user.id}
                         />
                       </div>
                     )
@@ -94,7 +92,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    checkOut: () => dispatch(checkoutCart()),
+    checkOut: (isGuest, cart) => dispatch(checkoutCart(isGuest, cart)),
     fetchCart: () => dispatch(fetchCart())
   }
 }

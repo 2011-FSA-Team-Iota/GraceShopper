@@ -15,11 +15,15 @@ class QuantityInput extends Component {
     await this.setState({
       quantity: evt.target.value
     })
-    this.props.setQuantity(this.props.product, this.state.quantity)
+
+    this.props.setQuantity(
+      this.props.product,
+      this.state.quantity,
+      this.props.user.isGuest
+    )
   }
 
   render() {
-    console.log(this.props.isLoggedIn)
     return (
       <div className="quantity-container">
         <label htmlFor="quantity">
@@ -38,10 +42,15 @@ class QuantityInput extends Component {
   }
 }
 
+function mapState(state) {
+  return {user: state.user}
+}
+
 const mapDispatch = dispatch => {
   return {
-    setQuantity: (product, quantity) => dispatch(setQuantity(product, quantity))
+    setQuantity: (product, quantity, isGuest) =>
+      dispatch(setQuantity(product, quantity, isGuest))
   }
 }
 
-export default connect(null, mapDispatch)(QuantityInput)
+export default connect(mapState, mapDispatch)(QuantityInput)

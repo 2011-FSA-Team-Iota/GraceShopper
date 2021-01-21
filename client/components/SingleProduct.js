@@ -41,6 +41,15 @@ class SingleProduct extends Component {
   render() {
     const {product} = this.props
     const {isAdmin} = this.props.user
+    let limit = 0
+
+    const itemExistsInCart = this.props.cart.find(
+      product => product.id === this.props.product.id
+    )
+
+    if (itemExistsInCart) {
+      limit = itemExistsInCart.orderProducts.quantity
+    }
 
     return (
       <>
@@ -53,7 +62,7 @@ class SingleProduct extends Component {
                   type="number"
                   name="quantity"
                   min={0}
-                  max={this.props.product.inventory}
+                  max={this.props.product.inventory - limit}
                   value={this.state.quantity}
                   placeholder="0"
                   onChange={e => this.onChangeHandler(e)}
@@ -92,7 +101,8 @@ const mapState = state => {
   return {
     product: state.singleProductReducer,
     user: state.user,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    cart: state.cart
   }
 }
 

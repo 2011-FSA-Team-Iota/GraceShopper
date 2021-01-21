@@ -18,18 +18,21 @@ export const addProductToCart = (product, isLoggedIn) => {
   }
 }
 
-export const removeProductFromCart = productId => {
+export const removeProductFromCart = (productId, isGuest) => {
   return {
     type: REMOVE_FROM_CART,
+    isGuest,
     productId
   }
 }
+
 export const updateQuantity = product => {
   return {
     type: UPDATE_QUANTITY,
     product
   }
 }
+
 export const clearCart = () => ({type: CLEAR_CART})
 
 export const setCart = (cart, isLoggedIn) => ({
@@ -53,10 +56,12 @@ export const addToCart = (isLoggedIn, product) => {
   }
 }
 
-export const setQuantity = (product, quantity) => {
+export const setQuantity = (product, quantity, isGuest) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/${product.id}`, quantity)
+      if (!isGuest) {
+        await axios.put(`/api/cart/${product.id}`, quantity)
+      }
       product.orderProducts.quantity = quantity
       dispatch(updateQuantity(product))
     } catch (err) {
@@ -64,21 +69,30 @@ export const setQuantity = (product, quantity) => {
     }
   }
 }
-export const removeFromCart = product => {
+
+export const removeFromCart = (product, isGuest) => {
   return async dispatch => {
     try {
-      await axios.delete(`api/cart/${product.id}`)
-      dispatch(removeProductFromCart(product.id))
+      if (!isGuest) {
+        await axios.delete(`api/cart/${product.id}`)
+      }
+      dispatch(removeProductFromCart(product.id, isGuest))
     } catch (err) {
       console.error(err.message)
     }
   }
 }
 
-export const checkoutCart = () => {
+export const checkoutCart = (isGuest, cart) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/checkout`)
+      if (isGuest) {
+        await axios.put(`/api/cart/guest/checkout`, cart)
+        localStorage.clear()
+      } else {
+        await axios.put(`/api/cart/checkout`)
+      }
+
       dispatch(clearCart())
       history.push('/checkout/confirmation')
     } catch (err) {
@@ -99,9 +113,9 @@ export const fetchCart = () => {
 }
 
 export default (state = [], action) => {
+  let newState
   switch (action.type) {
     case ADD_TO_CART:
-      let newState
       if (state.some(product => product.id === action.product.id)) {
         newState = state.map(product => {
           if (product.id === action.product.id) {
@@ -119,7 +133,13 @@ export default (state = [], action) => {
 
       return newState
     case REMOVE_FROM_CART:
-      return state.filter(product => product.id !== action.productId)
+      newState = state.filter(product => product.id !== action.productId)
+
+      if (action.isGuest) {
+        localStorage.setItem('cart', JSON.stringify(newState))
+      }
+
+      return newState
     case CLEAR_CART:
       return []
     case SET_CART:
