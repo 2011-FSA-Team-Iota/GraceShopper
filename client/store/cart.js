@@ -26,9 +26,10 @@ export const removeProductFromCart = (productId, isGuest) => {
   }
 }
 
-export const updateQuantity = product => {
+export const updateQuantity = (product, isGuest) => {
   return {
     type: UPDATE_QUANTITY,
+    isGuest,
     product
   }
 }
@@ -63,7 +64,7 @@ export const setQuantity = (product, quantity, isGuest) => {
         await axios.put(`/api/cart/${product.id}`, quantity)
       }
       product.orderProducts.quantity = quantity
-      dispatch(updateQuantity(product))
+      dispatch(updateQuantity(product, isGuest))
     } catch (err) {
       console.error(err.message)
     }
@@ -148,10 +149,16 @@ export default (state = [], action) => {
       }
       return action.cart
     case UPDATE_QUANTITY:
-      return [
+      newState = [
         ...state.filter(product => product.id !== action.product.id),
         action.product
       ]
+
+      if (action.isGuest) {
+        localStorage.setItem('cart', JSON.stringify(newState))
+      }
+
+      return newState
     default:
       return state
   }
