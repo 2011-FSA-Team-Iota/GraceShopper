@@ -24,13 +24,14 @@ form div {
   display: inline-block;
 }
 
-.jumbo1 {
+/* .jumbo1 {
   background-image: url('https://www.apple.com/v/home/s/images/heroes/iphone-12/iphone_12_us__fo0stbby242m_large.jpg');
   background-attachment: fixed;
-  background-position: center;
+  background-position: 50% 500%;
   background-repeat: no-repeat;
   background-size: cover;
-}
+  margin-bottom: 0;
+} */
 /*************************/
 /******** NAV BAR ********/
 #nav-bar {
@@ -256,65 +257,6 @@ form div {
 .add-to-cart > button:active {
   background-color: dodgerblue;
 }
-
-/****************************/
-/******** ADMIN VIEW ********/
-.profile > h3 {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10;
-  align-items: center;
-  font-size: 18;
-}
-.profile > h4 {
-  display: flex;
-  flex-direction: column;
-  margin-left: 5;
-  align-items: center;
-  font-size: 10;
-}
-
-/***********************************/
-/******** LANDING PAGE VIEW ********/
-
-.jumbo1 {
-  background-size: cover;
-  color: #ccc;
-  height: 600px;
-  position: relative;
-  z-index: -2;
-}
-.jumbo1 > div {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10;
-  padding-bottom: 10;
-  align-items: center;
-}
-.overlay {
-  background-color: #000;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-.overlay > h1 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10;
-  margin-left: 10;
-  align-items: center;
-}
-.overlay > p {
-  margin-left: 10;
-  margin-right: 10;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 10;
-  align-content: center;
-  align-items: center;
 
 /*************************************/
 /********  SHOPPING CART VIEW ********/
@@ -553,4 +495,78 @@ body > footer > p:nth-child(1) {
 body > footer > p:nth-child(3) {
   margin-bottom: 5px;
   font-size: 9px;
+}
+
+/****************************/
+/******** ADMIN VIEW ********/
+.profile > h3 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10;
+  align-items: center;
+  font-size: 18;
+}
+.profile > h4 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5;
+  align-items: center;
+  font-size: 10;
+}
+
+/***********************************/
+/******** LANDING PAGE VIEW ********/
+
+.jumbo1 {
+  background-size: cover;
+  color: rgb(0, 0, 0);
+  height: 550px;
+  position: relative;
+  z-index: -2;
+}
+
+.jumbo1 > div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10;
+  padding-bottom: 10;
+  align-items: center;
+}
+.overlay {
+  background-color: transparent;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.overlay > h1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10;
+  margin-left: 10;
+  align-items: center;
+}
+.overlay > p {
+  margin-left: 10;
+  margin-right: 10;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10;
+  align-content: center;
+  align-items: center;
+}
+
+#over-photo-container {
+  width: 100%;
+}
+
+#cover-photo {
+  z-index: -1;
+  position: fixed;
+  bottom: 49px;
+  opacity: 0.3;
+  left: 50vw;
+  margin-left: -25vw; /* Negative half of width. */
 }
