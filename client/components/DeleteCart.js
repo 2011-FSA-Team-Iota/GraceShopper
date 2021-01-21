@@ -9,9 +9,15 @@ class DeleteCart extends Component {
   }
   render() {
     return (
-      <button type="submit" onClick={this.onClickHandler}>
-        Remove From Cart
-      </button>
+      <form>
+        <button
+          type="submit"
+          onClick={this.onClickHandler}
+          className="cart-remove-item-button"
+        >
+          Remove From Cart
+        </button>
+      </form>
     )
   }
 }

@@ -13,27 +13,37 @@ export class AllProducts extends React.Component {
 
     return (
       <div id="our-products">
-        {isAdmin && <Link to="/addproduct">Add Product</Link>}
+        {isAdmin && (
+          <Link to="/addproduct" id="add-product">
+            Add Product
+          </Link>
+        )}
         <h2>Our Products</h2>
         <div id="products-wrapper">
           {this.props.products.sort((a, b) => b.id - a.id).map(eachProduct => {
             return (
-              <span key={eachProduct.id} className="each-item">
-                <Link to={`/products/${eachProduct.id}`}>
-                  <img src={eachProduct.imgUrl} style={{height: '100px'}} />
-                </Link>
-                <Link to={`/products/${eachProduct.id}`}>
-                  <h3>{eachProduct.name}</h3>
-                </Link>
-                <p>{`$${eachProduct.price / 100}`}</p>
-                <p
-                  className={`${
-                    Number(eachProduct.inventory) < 8
-                      ? 'inventory-red'
-                      : 'inventory'
-                  }`}
-                >{`${eachProduct.inventory} left in stock.`}</p>
-              </span>
+              <Link
+                to={`/products/${eachProduct.id}`}
+                key={eachProduct.id}
+                className="each-item"
+              >
+                <span key={eachProduct.id}>
+                  <Link to={`/products/${eachProduct.id}`}>
+                    <img src={eachProduct.imgUrl} style={{height: '100px'}} />
+                  </Link>
+                  <Link to={`/products/${eachProduct.id}`}>
+                    <h3>{eachProduct.name}</h3>
+                  </Link>
+                  <p>{`$${eachProduct.price / 100}`}</p>
+                  <p
+                    className={`${
+                      Number(eachProduct.inventory) < 8
+                        ? 'inventory-red'
+                        : 'inventory'
+                    }`}
+                  >{`${eachProduct.inventory} left in stock.`}</p>
+                </span>
+              </Link>
             )
           })}
         </div>

@@ -30,41 +30,56 @@ class CartView extends React.Component {
             Cart Total: <span>${totalPrice.toFixed(2)}</span>
           </h2>
         </div>
+        <button
+          type="submit"
+          onClick={evt => this.handleSubmit(evt)}
+          id="checkout-button"
+        >
+          Checkout
+        </button>
         <div id="cart-item-list">
-          {this.props.cart.length ? (
-            <>
-              {this.props.cart.sort((a, b) => b.id - a.id).map(eachProduct => {
-                return (
-                  <div key={eachProduct.id} className="each-cart-item">
-                    <span>
-                      <Link to={`/products/${eachProduct.id}`}>
-                        <h3>{eachProduct.name}</h3>
-                      </Link>
-                      <Link to={`/products/${eachProduct.id}`}>
-                        <img src={eachProduct.imgUrl} className="item-image" />
-                      </Link>
-                    </span>
-                    <div>
-                      <span>${eachProduct.price / 100}</span>
-                      <QuantityInput
-                        product={eachProduct}
-                        inventory={eachProduct.inventory}
-                        quantity={eachProduct.orderProducts.quantity}
-                      />
-                    </div>
-                    <DeleteCart product={eachProduct} />
-                  </div>
-                )
-              })}
-              <button type="submit" onClick={evt => this.handleSubmit(evt)}>
-                Checkout
-              </button>
-            </>
-          ) : !this.props.cart.length ? (
-            <h1>Cart is empty.</h1>
-          ) : (
-            <h1>LOADING</h1>
-          )}
+          <div id="list-container">
+            {this.props.cart.length ? (
+              <>
+                {this.props.cart
+                  .sort((a, b) => b.id - a.id)
+                  .map(eachProduct => {
+                    return (
+                      <div key={eachProduct.id} className="each-cart-item">
+                        <span>
+                          <Link to={`/products/${eachProduct.id}`}>
+                            <h3>{eachProduct.name}</h3>
+                          </Link>
+                          <Link to={`/products/${eachProduct.id}`}>
+                            <img
+                              src={eachProduct.imgUrl}
+                              className="item-image"
+                            />
+                          </Link>
+                        </span>
+                        <div>
+                          <span className="item-price">
+                            ${eachProduct.price / 100}
+                          </span>
+                          <QuantityInput
+                            product={eachProduct}
+                            inventory={eachProduct.inventory}
+                            quantity={eachProduct.orderProducts.quantity}
+                          />
+                        </div>
+                        <DeleteCart
+                          product={eachProduct}
+                        />
+                      </div>
+                    )
+                  })}
+              </>
+            ) : !this.props.cart.length ? (
+              <h3 id="empty-cart">Shopping Cart is empty.</h3>
+            ) : (
+              <h1 id="loading">LOADING</h1>
+            )}
+          </div>
         </div>
       </div>
     )

@@ -25,16 +25,18 @@ class QuantityInput extends Component {
 
   render() {
     return (
-      <div>
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          min={1}
-          max={this.props.inventory}
-          name="quantity"
-          onChange={this.onChange}
-          value={this.state.quantity}
-        />
+      <div className="quantity-container">
+        <label htmlFor="quantity">
+          Quantity:{' '}
+          <input
+            type="number"
+            min={1}
+            max={this.props.inventory}
+            name="quantity"
+            onChange={this.onChange}
+            value={this.state.quantity}
+          />
+        </label>
       </div>
     )
   }

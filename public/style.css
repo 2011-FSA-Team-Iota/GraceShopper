@@ -3,6 +3,7 @@
 body {
   font-family: sans-serif;
   padding-top: 8vh;
+  padding-bottom: 80px;
 }
 
 a {
@@ -44,19 +45,20 @@ form div {
   z-index: 8;
 }
 
-#nav-bar > h1 {
+#nav-bar > a > h1 {
   float: left;
   color: white;
   position: fixed;
   margin-top: 0.8vh;
   margin-left: 2vw;
   font-size: 5vh;
+  letter-spacing: 8px;
 }
 
 #nav-bar > nav > div > a {
   color: lightgray;
   margin-top: 3.5vh;
-  font-size: 2vh;
+  font-size: 2.2vh;
   font-weight: lighter;
 }
 
@@ -127,15 +129,20 @@ form div {
   text-align: center;
 }
 
-.auth-button:active {
-  width: 127px;
-  height: 49px;
-  font-size: 18px;
-  color: rgb(255, 255, 255);
+.auth-button:hover {
   background-color: rgb(125, 125, 125);
+}
+
+.auth-button:active {
+  width: 96px;
+  height: 28px;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(180, 180, 180, 0.873);
   border-radius: 8px;
   outline: none;
 }
+
 /*******************************/
 /******** PRODUCTS VIEW ********/
 #our-products > h2 {
@@ -166,23 +173,23 @@ form div {
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.247);
 }
 
-#products-wrapper > span > a > h3 {
+#products-wrapper > a > span > a > h3 {
   color: black;
   font-family: verdana;
   font-weight: normal;
 }
 
-#products-wrapper > span > p {
+#products-wrapper > a > span > p {
   color: rgb(32, 32, 32);
   font-size: 0.8em;
 }
 
-#products-wrapper > span > .inventory {
+#products-wrapper > a > span > .inventory {
   color: rgb(120, 119, 119);
   font-size: 0.8em;
 }
 
-#products-wrapper > span > .inventory-red {
+#products-wrapper > a > span > .inventory-red {
   color: rgb(255, 0, 0);
   font-size: 0.7em;
   font-weight: bold;
@@ -330,17 +337,220 @@ form div {
   font-weight: lighter;
 }
 
+#list-container {
+  margin-top: 60px;
+}
+
 #cart-item-list > * {
-  padding-top: 68px;
   z-index: -1;
 }
 
-#cart-item-list > div > span > a > h3 {
+#cart-item-list > div > div > span > a > h3 {
   color: black;
   font-weight: normal;
   font-family: helvetica;
 }
 
-#cart-item-list > div > span > a > .item-image {
+#cart-item-list > div > div > span > a > .item-image {
   width: 58px;
+}
+
+.each-cart-item {
+  padding-top: 20px;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.each-cart-item > span > a > h3 {
+  text-shadow: 2px 2px 3px rgba(128, 128, 128, 0.432);
+}
+
+.each-cart-item:hover {
+  box-shadow: 2px 2px 5px gray;
+}
+
+.item-price {
+  color: grey;
+  padding: 8px 0px;
+  display: block;
+}
+
+#checkout-button {
+  outline: none;
+  padding: 8px 28px;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 12px;
+  border: 0.5px solid black;
+  font-weight: lighter;
+  position: fixed;
+  right: 25px;
+  top: 128px;
+  z-index: 1;
+  box-shadow: 3px 3px 5px gray;
+}
+
+#checkout-button:hover {
+  background-color: rgb(66, 159, 252);
+}
+
+#checkout-button:active {
+  background-color: dodgerblue;
+}
+
+#list-container > div > form > button {
+  background-color: transparent;
+  outline: none;
+  padding: 2px 8px;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  border: none;
+  font-weight: lighter;
+  font-size: 10px;
+  margin: 10px 0;
+}
+
+#list-container > div > form > button:hover {
+  background-color: transparent;
+  border: 0.5px solid gray;
+}
+
+#list-container > div > form > button:active {
+  background-color: transparent;
+  border: 2px solid gray;
+}
+
+.quantity-container > label > input {
+  margin: 8px 0px;
+  width: 30px;
+  font-size: 10px;
+}
+
+.quantity-container > label {
+  font-size: 11px;
+  font-family: helvetica;
+}
+
+#empty-cart {
+  margin-top: 46vh;
+  color: rgba(125, 125, 125, 0.24);
+  font-size: 50px;
+}
+
+#loading {
+  margin-top: 46vh;
+  color: rgba(125, 125, 125, 0.24);
+  font-size: 50px;
+}
+
+/*******************************/
+/*********  ADMIN VIEW *********/
+/* add product | edit product  */
+#add-product {
+  background-color: dodgerblue;
+  color: white;
+  padding: 5px 18px;
+  border-radius: 12px;
+  position: fixed;
+  top: 70px;
+  left: 30px;
+  box-shadow: 2px 2px 3px gray;
+}
+
+#add-product:active {
+  box-shadow: none;
+  background-color: dodgerblue;
+}
+
+#add-product:hover {
+  background-color: rgb(66, 159, 252);
+}
+
+#edit-product-form {
+  position: fixed;
+  bottom: 50px;
+}
+
+#edit-product-form > label {
+  display: none;
+}
+
+#edit-product-form > input {
+  display: block;
+  margin: 5px 0px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 1px solid gray;
+}
+
+#update-description {
+  height: 50px;
+  width: 200px;
+}
+
+#update-product-button {
+  outline: none;
+  border: 2px solid green;
+  color: green;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin-top: 8px;
+}
+
+#update-product-button:hover {
+  box-shadow: 3px 3px 5px gray;
+}
+
+#update-product-button:active {
+  box-shadow: none;
+}
+
+#delete-product-permanently {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  outline: none;
+  border: 2px solid red;
+  color: red;
+  background-color: white;
+  border-radius: 8px;
+  padding: 3px 8px;
+}
+
+#delete-product-permanently:hover {
+  box-shadow: 3px 3px 5px gray;
+}
+
+#delete-product-permanently:active {
+  box-shadow: none;
+}
+
+/***************************/
+/*********  FOOTER *********/
+footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  color: rgb(208, 208, 208);
+  width: 100%;
+  font-size: 8px;
+}
+
+footer > p {
+  margin: 2px 0px;
+}
+
+body > footer > p:nth-child(1) {
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+body > footer > p:nth-child(3) {
+  margin-bottom: 5px;
+  font-size: 9px;
 }
