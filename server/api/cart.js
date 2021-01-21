@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// Add to Cart
+// ADD TO CART
 router.put('/', async (req, res, next) => {
   try {
     const userId = req.user.id
@@ -32,33 +32,33 @@ router.put('/', async (req, res, next) => {
       }
     })
 
-    const boolean = await cart.hasProduct(req.body.product.id)
+    const boolean = await cart.hasProduct(req.body.id)
 
     if (boolean === true) {
       const productQuantity = await OrderProducts.findOne({
         where: {
           orderId: cart.id,
-          productId: req.body.product.id
+          productId: req.body.id
         }
       })
 
       productQuantity.update({
-        quantity: productQuantity.quantity + req.body.quantity
+        quantity: productQuantity.quantity + req.body.orderProducts.quantity
       })
 
       res.sendStatus(204)
     } else if (boolean === false) {
-      await cart.addProduct(req.body.product.id)
+      await cart.addProduct(req.body.id)
 
       const productQuantity = await OrderProducts.findOne({
         where: {
           orderId: cart.id,
-          productId: req.body.product.id
+          productId: req.body.id
         }
       })
 
       await productQuantity.update({
-        quantity: req.body.quantity
+        quantity: req.body.orderProducts.quantity
       })
 
       res.sendStatus(204)
@@ -81,23 +81,43 @@ router.put('/checkout', async (req, res, next) => {
     })
 
     const listOfProducts = await pendingCart.getProducts()
-    listOfProducts.map(product =>
-      product.update({
-        inventory: product.inventory - product.orderProducts.quantity
-      })
+    listOfProducts.map(
+      async product =>
+        await product.update({
+          inventory: product.inventory - product.orderProducts.quantity
+        })
     )
 
     await pendingCart.update({checkedOut: true})
     const user = await User.findByPk(req.user.id)
     await user.createOrder()
 
-    res.sendStatus(200)
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
 })
 
-// Update Quantity
+// GUEST CHECKOUT
+router.put('/guest/checkout', async (req, res, next) => {
+  try {
+    const checkoutItems = req.body
+
+    checkoutItems.forEach(async product => {
+      const item = await Product.findByPk(product.id)
+
+      await item.update({
+        inventory: item.inventory - product.orderProducts.quantity
+      })
+    })
+
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// UPDATE QUANTITY
 router.put('/:productId', async (req, res, next) => {
   try {
     const userId = req.user.id
@@ -124,7 +144,7 @@ router.put('/:productId', async (req, res, next) => {
   }
 })
 
-// Delete From Cart
+// DELETE FROM CART
 router.delete('/:productId', async (req, res, next) => {
   try {
     const userId = req.user.id

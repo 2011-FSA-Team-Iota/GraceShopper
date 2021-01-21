@@ -1,7 +1,6 @@
 import axios from 'axios'
-import localStorage from 'local-storage'
+// import localStorage from 'local-storage'
 import history from '../history'
-
 
 // Action Types
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -11,78 +10,58 @@ const SET_CART = 'SET_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 // Action creators
-export const addProductToCart = product => {
+export const addProductToCart = (product, isLoggedIn) => {
   return {
     type: ADD_TO_CART,
+    isLoggedIn,
     product
   }
 }
 
-export const removeProductFromCart = productId => {
+export const removeProductFromCart = (productId, isGuest) => {
   return {
     type: REMOVE_FROM_CART,
+    isGuest,
     productId
   }
 }
+
 export const updateQuantity = product => {
   return {
     type: UPDATE_QUANTITY,
     product
   }
 }
+
 export const clearCart = () => ({type: CLEAR_CART})
 
-export const setCart = cart => ({type: SET_CART, cart})
+export const setCart = (cart, isLoggedIn) => ({
+  type: SET_CART,
+  isLoggedIn,
+  cart
+})
 
 // Thunk
-export const addToCart = productAndQuantity => {
+export const addToCart = (isLoggedIn, product) => {
   return async dispatch => {
     try {
-      // Decide if User or not a User?
-      if (!userId) {
-        // localCart has something in it? IF YES
-        if (JSON.parse(localStorage.get('localCart'))) {
-          // bring in localCart and parse it back to an array of Obj's
-          let currCart = JSON.parse(localStorage.get('localCart'))
-          // iterate through the localCart array of objects
-          if (
-            currCart.some(
-              //find if the item attempting to be added is already there
-              curr => curr.product.id === productAndQuantity.product.id
-            )
-          ) {
-            // if so add onto the quantity
-            // eslint-disable-next-line no-undef
-            curr.quantity += productAndQuantity.quantity
-          } else {
-            // if not push it onto the back of the cart AKA a new item
-            currCart.push(productAndQuantity)
-          }
-          console.log(currCart)
-
-          // turn the cart back into a string and send it back up to LocalStorage
-          localStorage.set('localCart', JSON.stringify(currCart))
-        } else {
-          // if cart @ LS has nothing in it then make an array and add the first item
-          localStorage.set('localCart', JSON.stringify([productAndQuantity]))
-        }
-
-        dispatch(addProductToCart(test.data))
-      } else{
-
-      await axios.put(`/api/cart/`, productAndQuantity)
-      dispatch(addProductToCart(productAndQuantity.product))
+      if (isLoggedIn) {
+        await axios.put(`/api/cart/`, product)
       }
+      dispatch(addProductToCart(product, isLoggedIn))
       history.push('/cart')
     } catch (err) {
       console.error(err.message)
     }
   }
 }
-export const setQuantity = (product, quantity) => {
+
+export const setQuantity = (product, quantity, isGuest) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/${product.id}`, quantity)
+      if (!isGuest) {
+        await axios.put(`/api/cart/${product.id}`, quantity)
+      }
       product.orderProducts.quantity = quantity
       dispatch(updateQuantity(product))
     } catch (err) {
@@ -90,21 +69,30 @@ export const setQuantity = (product, quantity) => {
     }
   }
 }
-export const removeFromCart = product => {
+
+export const removeFromCart = (product, isGuest) => {
   return async dispatch => {
     try {
-      await axios.delete(`api/cart/${product.id}`)
-      dispatch(removeProductFromCart(product.id))
+      if (!isGuest) {
+        await axios.delete(`api/cart/${product.id}`)
+      }
+      dispatch(removeProductFromCart(product.id, isGuest))
     } catch (err) {
       console.error(err.message)
     }
   }
 }
 
-export const checkoutCart = () => {
+export const checkoutCart = (isGuest, cart) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/checkout`)
+      if (isGuest) {
+        await axios.put(`/api/cart/guest/checkout`, cart)
+        localStorage.clear()
+      } else {
+        await axios.put(`/api/cart/checkout`)
+      }
+
       dispatch(clearCart())
       history.push('/checkout/confirmation')
     } catch (err) {
@@ -125,14 +113,39 @@ export const fetchCart = () => {
 }
 
 export default (state = [], action) => {
+  let newState
   switch (action.type) {
     case ADD_TO_CART:
-      return [...state, action.product]
+      if (state.some(product => product.id === action.product.id)) {
+        newState = state.map(product => {
+          if (product.id === action.product.id) {
+            product.orderProducts.quantity +=
+              action.product.orderProducts.quantity
+            return product
+          }
+          return product
+        })
+      } else newState = [...state, action.product]
+
+      if (!action.isLoggedIn) {
+        localStorage.setItem('cart', JSON.stringify(newState))
+      }
+
+      return newState
     case REMOVE_FROM_CART:
-      return state.filter(product => product.id !== action.productId)
+      newState = state.filter(product => product.id !== action.productId)
+
+      if (action.isGuest) {
+        localStorage.setItem('cart', JSON.stringify(newState))
+      }
+
+      return newState
     case CLEAR_CART:
       return []
     case SET_CART:
+      if (action.isLoggedIn === false) {
+        return JSON.parse(action.cart)
+      }
       return action.cart
     case UPDATE_QUANTITY:
       return [
