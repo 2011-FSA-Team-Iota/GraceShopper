@@ -3,25 +3,28 @@ import {removeFromCart} from '../store/cart'
 import {connect} from 'react-redux'
 
 class DeleteCart extends Component {
-  onSubmit = evt => {
-    evt.preventDefault()
-    this.props.removeFromCart(this.props.product)
+  onClickHandler = () => {
+    const {product, user, removeFromCart} = this.props
+    removeFromCart(product, user.isGuest)
   }
   render() {
     return (
-      <form onSubmit={evt => evt.preventDefault()}>
-        <button type="submit" onClick={this.onSubmit}>
-          Remove From Cart
-        </button>
-      </form>
+      <button type="submit" onClick={this.onClickHandler}>
+        Remove From Cart
+      </button>
     )
   }
 }
 
+function mapState(state) {
+  return {user: state.user}
+}
+
 const mapDispatch = dispatch => {
   return {
-    removeFromCart: product => dispatch(removeFromCart(product))
+    removeFromCart: (product, isGuest) =>
+      dispatch(removeFromCart(product, isGuest))
   }
 }
 
-export default connect(null, mapDispatch)(DeleteCart)
+export default connect(mapState, mapDispatch)(DeleteCart)

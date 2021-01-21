@@ -11,7 +11,11 @@ const REMOVE_USER = 'REMOVE_USER'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {
+  email: null,
+  isAdmin: false,
+  isGuest: true
+}
 
 /**
  * ACTION CREATORS
@@ -29,8 +33,10 @@ export const me = () => async dispatch => {
     if (data === '' && !!localStorage.getItem('cart') === true) {
       dispatch(setCart(localStorage.getItem('cart'), false))
     }
-    if (data.orders !== undefined)
+    if (data.orders !== undefined) {
+      data.isGuest = false
       dispatch(setCart(data.orders[0].products, true))
+    }
   } catch (err) {
     console.error(err)
   }
