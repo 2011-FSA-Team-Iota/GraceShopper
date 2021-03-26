@@ -19,8 +19,8 @@ const db = new Sequelize(
   {
     logging: false,
     // operatorsAliases: false,
-    dialect: 'postgres'
-    // ssl: true,
+    dialect: 'postgres',
+    ssl: true
     // dialectOptions: {
     //   ssl: {
     //     require: true,
