@@ -20,13 +20,13 @@ const db = new Sequelize(
     logging: false,
     // operatorsAliases: false,
     dialect: 'postgres',
-    ssl: true
-    // dialectOptions: {
-    //   ssl: {
-    //     require: true,
-    //     rejectUnauthorized: false
-    //   }
-    // },
+    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   }
 )
 
